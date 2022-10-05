@@ -49,18 +49,26 @@ function ShoppingCart({closeShoppingCart}) {
               <p>
                 <span>Total</span>
               </p>
-              <p>$
-              {cart.reduce((total, item) => {
-                return total + item.price;
-              }, 0)}
+              <p className="text-end font-bold">{`$
+                ${cart.reduce((total, item) => {
+                  return total + item.price;
+                }, 0)}`}
               </p>
             </div>
 
-            <Link href="/my-order">
-              <button className="bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12">
-                Checkout
-              </button>
-            </Link>
+            {cart.length > 0
+              ? <Link href="/my-order">
+                  <button className="bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12">
+                    See my order
+                  </button>
+                </Link>
+              : <div
+                  className="h-12 mt-6 bg-white border border-very-light-pink rounded-lg text-very-light-pink w-full text-md font-bold flex justify-center items-center"
+                >
+                  Added items to cart!
+                </div>
+            }
+
           </div>
         </div>
       </aside>

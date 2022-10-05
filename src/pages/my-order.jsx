@@ -28,7 +28,12 @@ function MyOrder() {
           className="w-26 fixed top-6 left-8   sm:w-32   hover:cursor-pointer" />
         </Link>
         <div className="grid w-80">
-          <h1 className="text-lg mb-10 font-bold">My order</h1>
+          <div className="flex flex-row justify-between items-center">
+            <h1 className="text-lg mb-10 font-bold">My order</h1>
+            <Link href="/showroom">
+              <p className="text-md text-hospital-green mb-10 font-bold   hover:cursor-pointer">Back to cart</p>
+            </Link>
+          </div>
 
           <div className="flex flex-col">
             <div className="flex flex-row justify-between h-16 items-center bg-text-input-field mb-6 rounded-lg px-6">
@@ -41,10 +46,10 @@ function MyOrder() {
                   }
                 </span>
               </p>
-              <p className="text-end font-bold">$
-                {cart.reduce((total, item) => {
+              <p className="text-end font-bold">{`$
+                ${cart.reduce((total, item) => {
                   return total + item.price;
-                }, 0)}
+                }, 0)}`}
               </p>
             </div>
 
@@ -54,9 +59,6 @@ function MyOrder() {
                 product={item}
               />
             ))}
-            {/* <MyOrderItem price="$120,00" title="Bike"/>
-            <MyOrderItem price="$120,00" title="Bike"/>
-            <MyOrderItem price="$120,00" title="Bike"/> */}
 
           </div>
         </div>
