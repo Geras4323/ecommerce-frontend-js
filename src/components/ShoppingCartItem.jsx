@@ -15,9 +15,9 @@ function ShoppingCartItem({product, indexValue}) {
         <figure>
           <img src={product.images[0]} alt={product.title} className="w-16 h-16 rounded-2xl object-cover" />
         </figure>
-        <p className="sm:max-w-min text-very-light-pink">{product.title}</p>
+        <p className="text-very-light-pink">{product.title}</p>
       </div>
-      <div className="w-1/4 flex flex-row justify-center items-center gap-4 font-bold">
+      <div className="w-1/4 flex flex-row justify-end items-center gap-4 font-bold">
         <p className="w-auto">{`$ ${product.price}`}</p>
         <img
           src="/assets/icons/icon_close.png"

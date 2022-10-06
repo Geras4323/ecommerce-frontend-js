@@ -31,7 +31,7 @@ function ShoppingCart({closeShoppingCart}) {
         </div>
 
         <div className="mt-2 h-full flex flex-col justify-between pb-24">
-          <section className="max-h-full pr-4 overflow-y-auto overflow-y-contain mb-2">
+          <section className="max-h-full px-2 overflow-y-auto overflow-y-contain mb-2">
             {cart.length > 0
               ? cart.map((item, index) => (
               <ShoppingCartItem

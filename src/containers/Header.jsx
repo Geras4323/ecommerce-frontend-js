@@ -34,7 +34,7 @@ function Header() {
         />
 
       <div className="flex">
-        <Link href="#">
+        <Link href="/">
           <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-24   hover:cursor-pointer" />
         </Link>
         <ul className="p-0 m-0 hidden   md:flex items-center h-16 ml-3 text-very-light-pink">
