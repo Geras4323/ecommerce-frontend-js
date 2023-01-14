@@ -10,9 +10,9 @@ function CreateAccount() {
       </Head>
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
-          <h1 className="text-lg mb-9 text-start w-full font-bold">My account</h1>
+          <h1 className="text-lg mb-9 text-start w-full font-bold">New account</h1>
 
-          <form action="/" className="flex flex-col w-full">
+          <form className="flex flex-col w-full">
             <div className="flex flex-col w-full">
               <label htmlFor="name" className="text-sm font-bold mb-1">Name</label>
               <input type="text" id="name" placeholder="Your name" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Image from 'next/image';
 
 import { AppContext } from '../contexts/AppContext';
 
@@ -32,8 +31,8 @@ function ProductCard({ product }) {
   return (
     <div className="w-36   sm:w-60">
       <img
-        src={product.images[0]}
-        alt={product.title}
+        src={product.image}
+        alt={product.name}
         className="w-36 h-36 rounded-2xl object-cover   hover:cursor-pointer   sm:w-60 sm:h-60"
         onClick={handleShowDetail}
       />
@@ -48,7 +47,7 @@ function ProductCard({ product }) {
       <div className="flex justify-between items-start mt-3   sm:items-center">
         <div>
           <p className="font-bold text-md mt-0 mb-1">{`$ ${product.price}`}</p>
-          <p className="text-sm text-very-light-pink my-0 w-24   sm:w-full">{product.title}</p>
+          <p className="text-sm text-very-light-pink my-0 w-24   sm:w-full">{product.name}</p>
         </div>
         {!isAdded
           ? <figure

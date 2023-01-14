@@ -5,12 +5,11 @@ import { ProductCard } from '../components/ProductCard';
 import { useGetProducts } from '../hooks/useGetProducts';
 
 
-const API = 'https://api.escuelajs.co/api/v1/products?limit=30&offset=0';
+// const API = 'https://api.escuelajs.co/api/v1/products?limit=30&offset=0';
+const API = 'http://localhost:5000/api/v1/products';
 
 function ProductsList() {
   const products = useGetProducts(API)
-
-
 
   return (
     <section className="mt-24 mb-8">

@@ -16,6 +16,7 @@ function useInitialState() {
 
   return {
     cart,
+    setCart,
     addToCart,
     removeFromCart,
     isShoppingCartShown,

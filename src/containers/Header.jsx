@@ -1,17 +1,39 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 
 import Link from 'next/link';
 
 import { MobileMenu } from '../components/MobileMenu';
 import { DesktopMenu } from '../components/DesktopMenu';
+import { verifyToken } from 'src/utils/verifyToken';
 
 import { ShoppingCart } from '../components/ShoppingCart';
 
 import { AppContext } from '../contexts/AppContext';
+import { api } from 'src/utils/axiosConnection';
 
 
 function Header() {
-  const { cart, isShoppingCartShown, setIsShoppingCartShown, isMenuShown, setIsMenuShown } = React.useContext(AppContext);
+  const [email, setEmail] = React.useState();
+  const {
+    cart,
+    isShoppingCartShown,
+    setIsShoppingCartShown,
+    isMenuShown,
+    setIsMenuShown
+  } = React.useContext(AppContext);
+
+
+  React.useEffect(() => {
+    async function getMail() {
+      const login_token = Cookies.get('login-token');
+      const { sub: userId } = await verifyToken(login_token);
+      const { data } = await api.get(`/users/${userId}`);
+      setEmail(data.email);
+    }
+    getMail();
+  }, [])
+
 
   const handleShowMenu = () => {
     setIsMenuShown(!isMenuShown);
@@ -65,10 +87,10 @@ function Header() {
             className="text-very-light-pink text-sm mr-3 hidden   md:block   hover:cursor-pointer hover:text-hospital-green"
             onClick={handleShowMenu}
           >
-            platzi@example.com
+            {email}
           </li>
           {isMenuShown ? <DesktopMenu /> : null}
-          {isMenuShown ? <MobileMenu /> : null}
+          {isMenuShown ? <MobileMenu email={email} /> : null}
           <li
             className="relative   hover:cursor-pointer"
             onClick={handleShowShoppingCart}

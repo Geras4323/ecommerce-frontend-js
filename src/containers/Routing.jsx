@@ -3,12 +3,13 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Home } from '../pages';
-import { CreateAccount } from '../pages/create-account';
-import { Login } from '../pages/login';
+import { CreateAccount } from '../pages/auth/create-account';
+import { Login } from '../pages/auth/login';
 import { Showroom } from '../pages/showroom';
 import { ViewAccountData } from '../pages/account-data';
-import { NewPassword } from '../pages/new-password';
-import { EmailSent } from '../pages/email-sent';
+import { RecoverPassword } from '../pages/auth/recover-password';
+import { NewPassword } from '../pages/auth/new-password';
+import { EmailSent } from '../pages/auth/email-sent';
 import { MyOrders } from '../pages/my-orders';
 import { MyOrder } from '../pages/my-order';
 import { NotFound } from '../pages/404';
@@ -30,6 +31,7 @@ function Routing() {
           <Route exact path="/login" element={ <Login /> } />
           <Route exact path="/showroom" element={ <Showroom /> } />
           <Route exact path="/account-data" element={ <ViewAccountData />} />
+          <Route exact path="/recover-password" element={ <RecoverPassword /> } />
           <Route exact path="/new-password" element={ <NewPassword /> } />
           <Route exact path="/email-sent" element={ <EmailSent /> } />
           <Route exact path="/my-orders" element={ <MyOrders /> } />

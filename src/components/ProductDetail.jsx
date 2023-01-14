@@ -32,13 +32,13 @@ function ProductDetail({ product, handleAddProduct, isAdded, setIsDetailShown })
         >
           <img src="/assets/icons/icon_close.png" alt="close" />
         </div>
-        <img src={product.images[0]} alt={product.title} className="w-full h-80 sm:p-2 sm:pt-0 object-cover rounded-b-2xl border-b border-b-very-light-pink"/>
+        <img src={product.image} alt={product.name} className="w-full h-80 sm:p-2 sm:pt-0 object-cover rounded-b-2xl border-b border-b-very-light-pink"/>
 
         <div className="h-full mt-6 mx-6 flex flex-col justify-between">
           <div className="h-full flex flex-col">
             <section>
               <p className="text-xl mb-1 font-bold">{`$ ${product.price}`}</p>
-              <p className="text-lg mb-6 text-very-light-pink">{product.title}</p>
+              <p className="text-lg mb-6 text-very-light-pink">{product.name}</p>
             </section>
             <div className="h-4/5 overflow-y-auto">
               <p className="h-4/5 text-md text-very-light-pink">{product.description}</p>

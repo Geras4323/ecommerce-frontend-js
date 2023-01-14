@@ -16,11 +16,11 @@ function NewPassword() {
           <h1 className="text-lg mb-3 text-center font-bold">Create a new password</h1>
           <p className="text-very-light-pink text-md font-light mt-0 mb-8 text-center">Enter a new password for your account</p>
 
-          <form action="/" className="flex flex-col w-full">
-            <label htmlFor="password" className="text-sm font-bold mb-1">Password</label>
-            <input type="password" id="password" placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-3" />
-            <label htmlFor="new-password" className="text-sm font-bold mb-1">Re-enter Password</label>
+          <form className="flex flex-col w-full">
+            <label htmlFor="new-password" className="text-sm font-bold mb-1">Password</label>
             <input type="password" id="new-password" placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-3" />
+            <label htmlFor="re-new-password" className="text-sm font-bold mb-1">Re-enter Password</label>
+            <input type="password" id="re-new-password" placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-3" />
 
             <input type="submit" value="Confirm" className="bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8" />
           </form>
