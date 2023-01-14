@@ -24,7 +24,7 @@ function RecoverPassword() {
           <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-10   sm:hidden" />
 
           <p className='mb-6'>
-            Enter your account's email address. You will receive a password reset link.
+            Enter your account&apos;s email address. You will receive a password reset link.
           </p>
 
           <form action="/" className="flex flex-col w-full" ref={form}>
