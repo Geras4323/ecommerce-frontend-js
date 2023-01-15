@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 
 function DesktopMenu() {
 
@@ -22,7 +23,7 @@ function DesktopMenu() {
         <li className="text-end pt-5 border-t border-t-very-light-pink mb-5">
           <span
             onClick={handleSignOut}
-            className="text-hospital-green text-sm"
+            className="text-hospital-green text-sm cursor-pointer"
           >
             Sign out
           </span>

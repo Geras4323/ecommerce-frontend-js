@@ -21,7 +21,7 @@ function Login() {
       email: formData.get('email'),
       password: formData.get('password')
     }
-    console.log(body);
+    // console.log(body);
     const config = {
       headers: {
         accept: '*/*',
@@ -29,9 +29,9 @@ function Login() {
       }
     };
     const {data} = await api.post('/auth/login', body, config);
-    console.log(data.token);
+    // console.log(data.token);
     Cookies.set('login-token', data.token);
-    console.log('cookie set');
+    // console.log('cookie set');
     window.location.href = '/showroom';
   }
 
@@ -43,11 +43,14 @@ function Login() {
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
           <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   sm:hidden" />
+          <h1 className="text-lg mb-9 text-start w-full font-bold">Login</h1>
 
-          <form action="/" className="flex flex-col w-full" ref={form}>
+
+          <form className="flex flex-col w-full" ref={form}>
             <label htmlFor="email" className="text-sm font-bold mb-1">Email address</label>
             <input
               type="text"
+              id="email"
               name="email"
               placeholder="email@example.com"
               className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-6"
@@ -58,6 +61,7 @@ function Login() {
             <label htmlFor="password" className="text-sm font-bold mb-1">Password</label>
             <input
               type="password"
+              id="password"
               name="password"
               placeholder="*********"
               className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-3"
@@ -77,7 +81,7 @@ function Login() {
             </Link>
           </form>
 
-          <Link href='/create-account'>
+          <Link href='/auth/create-account'>
             <div className='bg-white flex justify-center items-center border border-hospital-green rounded-lg text-hospital-green w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8'>
               Sign up
             </div>

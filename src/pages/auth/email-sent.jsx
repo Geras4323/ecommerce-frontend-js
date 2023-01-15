@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Link from 'next/link';
 
 function EmailSent() {
   return (
@@ -19,11 +20,13 @@ function EmailSent() {
             <img src="/assets/icons/email.svg" alt="email" className="w-20" />
           </div>
 
-          <button className="bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8">Login</button>
+          <Link href='/auth/login'>
+            <button className="bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8">Login</button>
+          </Link>
 
           <p className="text-sm">
             <span className="text-very-light-pink">Didn&apos;t receive the email? </span>
-            <a href="#" className="text-hospital-green">Resend</a>
+            <Link href='/auth/recover-password' className="text-hospital-green">Resend</Link>
           </p>
         </div>
       </div>

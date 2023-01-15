@@ -8,7 +8,7 @@ import { Login } from '../pages/auth/login';
 import { Showroom } from '../pages/showroom';
 import { ViewAccountData } from '../pages/account-data';
 import { RecoverPassword } from '../pages/auth/recover-password';
-import { NewPassword } from '../pages/auth/new-password';
+import { NewPassword } from '../pages/auth/new-password/[token]';
 import { EmailSent } from '../pages/auth/email-sent';
 import { MyOrders } from '../pages/my-orders';
 import { MyOrder } from '../pages/my-order';

@@ -56,7 +56,7 @@ function MyAccount() {
           </p>
 
           <Link href='/showroom'>
-            <p className="mt-4 text-white text-md text-center mb-10 cursor-pointer">Back to showroom</p>
+            <p className="mt-4 text-hospital-green text-md text-center mb-10 cursor-pointer">Back to showroom</p>
           </Link>
         </div>
       </div>

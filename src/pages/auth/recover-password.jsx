@@ -2,17 +2,27 @@ import React from 'react';
 
 import Head from 'next/head';
 
+import { api } from 'src/utils/axiosConnection';
+
+
 function RecoverPassword() {
   const form = React.useRef(null);
 
-  // const handleLogin = () => {
-  //   const formData = new FormData(form.current);
-  //   const data = {
-  //     username: formData.get('email'),
-  //     password: formData.get('password')
-  //   }
-  //   console.log(data);
-  // }
+  async function handleRecovery() {
+    const formData = new FormData(form.current);
+    const body = {
+      email: formData.get('email'),
+    }
+    console.log(body)
+    const config = {
+      headers: {
+        accept: '*/*',
+        'Content-Type': 'application/json',
+      }
+    };
+    const {data} = await api.post('/auth/recovery', body, config);
+    window.location.href = '/auth/email-sent';
+  }
 
   return (
     <>
@@ -34,7 +44,7 @@ function RecoverPassword() {
             <button
               className="bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8"
               type="button"
-              // onClick={handleLogin}
+              onClick={handleRecovery}
             >
               Send email
             </button>
