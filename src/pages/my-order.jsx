@@ -12,7 +12,7 @@ import { api } from 'src/utils/axiosConnection';
 
 
 function MyOrder() {
-  const { cart, setCart } = React.useContext(AppContext);
+  const { cart, setCart, setIsShoppingCartShown } = React.useContext(AppContext);
   const [makingReservation, setMakingReservation] = React.useState(false);
   const [reservationMade, setReservationMade] = React.useState(false);
   const [reservationError, setReservationError] = React.useState(false);
@@ -69,6 +69,7 @@ function MyOrder() {
 
       setMakingReservation(false);
       setReservationMade(true);
+      setIsShoppingCartShown(false);
 
     } catch (err) {
       setMakingReservation(false);
@@ -81,6 +82,12 @@ function MyOrder() {
     setCart([]);
   }
 
+  function goBack() {
+    if (reservationMade) {
+      emptyCart();
+    }
+  }
+
 
   return (
     <>
@@ -88,16 +95,21 @@ function MyOrder() {
         <title>My Order | Yard Sale</title>
       </Head>
       <div className="w-full h-screen grid place-items-center">
-        <Link href="/">
-          <img src="/assets/logos/logo_yard_sale.svg" alt="logo"
-          className="w-26 fixed top-6 left-8   sm:w-32   hover:cursor-pointer" />
-        </Link>
+
+        <img src="/assets/logos/logo_yard_sale.svg" alt="logo"
+        className="w-26 fixed top-6 left-8   sm:w-32" />
+
         <div className="grid w-80">
           <div className="flex flex-row justify-between items-center">
             <h1 className="text-lg mb-10 font-bold">My order</h1>
-            <Link href="/showroom">
-              <p className="text-md text-hospital-green mb-10 font-bold   hover:cursor-pointer">Back to cart</p>
-            </Link>
+            <div
+              onClick={goBack}
+              className='text-md text-hospital-green mb-10 font-bold'
+            >
+              <Link href="/showroom">
+                {reservationMade ? 'Back to showroom' : 'Back to cart'}
+              </Link>
+            </div>
           </div>
 
           <div className="flex flex-col">

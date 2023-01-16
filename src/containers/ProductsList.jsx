@@ -8,7 +8,7 @@ import { useGetProducts } from '../hooks/useGetProducts';
 // const API = 'https://api.escuelajs.co/api/v1/products?limit=30&offset=0';
 const API = 'http://localhost:5000/api/v1/products';
 
-function ProductsList() {
+function ProductsList({ email }) {
   const products = useGetProducts(API)
 
   return (
@@ -19,6 +19,7 @@ function ProductsList() {
           <ProductCard
             key={product.id}
             product={product}
+            logged={email ? true : false}
           />
         ))}
 

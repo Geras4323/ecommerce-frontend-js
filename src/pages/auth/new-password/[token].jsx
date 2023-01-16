@@ -75,7 +75,7 @@ function NewPassword() {
           <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   sm:hidden" />
 
           <h1 className="text-lg mb-3 text-center font-bold">Create a new password</h1>
-          <p className="text-very-light-pink text-md font-light mt-0 mb-8 text-center">Enter a new password for your account</p>
+          <p className="text-gray-500 text-md font-light mt-0 mb-8 text-center">Enter a new password for your account</p>
 
           <form className="flex flex-col w-full" ref={form}>
             <div className={`mb-5 flex flex-row justify-start items-center gap-3 ${meetsLength ? 'text-green-400' : 'text-red-400'}`}>
@@ -122,7 +122,7 @@ function NewPassword() {
               type="button"
               disabled={!meetsLength || !areEqual}
               onClick={handleChangePassword}
-              className="bg-hospital-green border-none rounded-lg text-white w-full text-md font-bold h-12 mt-4 mb-8"
+              className={`${(!meetsLength || !areEqual) ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
             >
               Confirm
             </button>

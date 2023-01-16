@@ -32,7 +32,7 @@ function MyOrders() {
       <Head>
         <title>My Orders | Yard Sale</title>
       </Head>
-      <div className="w-full h-screen grid place-items-center">
+      <div className="pt-6 w-full h-screen grid place-items-center">
         <div className="grid w-80">
           <div className="flex flex-row justify-between items-center">
             <h1 className="text-lg mb-10 font-bold">My orders</h1>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { api } from 'src/utils/axiosConnection';
 
@@ -9,6 +10,33 @@ function CreateAccount() {
   const form = React.useRef(null);
 
   const [error, setError] = React.useState();
+  const [isSomeEmpty, setIsSomeEmpty] = React.useState(true);
+  const [meetsLength, setMeetsLength] = React.useState(false);
+
+  function checkEmpty() {
+    const formData = new FormData(form.current);
+    const username = formData.get('username');
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const firstName = formData.get('first_name');
+    const lastName = formData.get('last_name');
+    if (username.length === 0 || email.length === 0 || password.length < 8 || firstName.length === 0 || lastName.length === 0) {
+      setIsSomeEmpty(true);
+    } else {
+      setIsSomeEmpty(false);
+    }
+  }
+
+  function checkRequirements() {
+    const formData = new FormData(form.current);
+    const password = formData.get('password');
+    if (password.length >= 8) {
+      setMeetsLength(true);
+    } else {
+      setMeetsLength(false);
+    }
+    checkEmpty();
+  }
 
   async function handleCreateAccount() {
     try {
@@ -38,7 +66,6 @@ function CreateAccount() {
       await api.post('/users', body, config);
       window.location.href = '/auth/login';
     } catch (err) {
-      console.log(err.response.data.error.message);
       setError(err.response.data.error.message);
     }
   }
@@ -50,27 +77,45 @@ function CreateAccount() {
       </Head>
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
-          <h1 className="text-lg mb-9 text-start w-full font-bold">New account</h1>
+          <div className='w-full mb-9 flex flex-row items-center'>
+            <h1 className="text-lg text-start w-full font-bold">New account</h1>
+            <Link href='/auth/login'>
+              <p className="w-full text-right text-sm text-hospital-green font-bold   hover:cursor-pointer">Back to login</p>
+            </Link>
+          </div>
 
           <form className="flex flex-col w-full" ref={form}>
             <div className="flex flex-col w-full">
               <label htmlFor="username" className="text-sm font-bold mb-1">Username *</label>
-              <input type="text" id="username" name='username' placeholder="Your username" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <input type="text" onChange={checkEmpty} id="username" name='username' placeholder="Your username" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
               <label htmlFor="email" className="text-sm font-bold mb-1">Email *</label>
-              <input type="text" id="email" name='email' placeholder="email@example.com" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <input type="text" onChange={checkEmpty} id="email" name='email' placeholder="email@example.com" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
-              <label htmlFor="password" className="text-sm font-bold mb-1">Password *</label>
-              <input type="password" id="password" name='password' placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <div className='flex flex-row justify-between items-center'>
+                <label htmlFor="password" className="text-sm font-bold mb-1">Password *</label>
+                <div className={`flex flex-row items-center gap-2 fill-current ${meetsLength ? 'text-green-400' : 'text-red-400'}`}>
+                  {meetsLength
+                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
+                        <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                      </svg>
+                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
+                        <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+                      </svg>
+                  }
+                  <span className='text-sm'>8 characters long</span>
+                </div>
+              </div>
+              <input type="password" onChange={checkRequirements} id="password" name='password' placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
               <label htmlFor="first_name" className="text-sm font-bold mb-1">First name *</label>
-              <input id="first_name" name='first_name' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <input id="first_name" onChange={checkEmpty} name='first_name' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
               <label htmlFor="last_name" className="text-sm font-bold mb-1">Last name *</label>
-              <input id="last_name" name='last_name' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <input id="last_name" onChange={checkEmpty} name='last_name' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
               <label htmlFor="phone" className="text-sm font-bold mb-1">Phone</label>
-              <input id="phone" name='phone' placeholder='can be left empty' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <input id="phone" name='phone' placeholder='- can be left empty -' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
             </div>
 
             {error &&
@@ -79,8 +124,9 @@ function CreateAccount() {
 
             <button
               type="button"
+              disabled={isSomeEmpty || !meetsLength}
               onClick={handleCreateAccount}
-              className="bg-hospital-green border-none rounded-lg text-white w-full text-md font-bold h-12 mt-4 mb-8"
+              className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white'} border-none rounded-lg text-white w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
             >
               Create account
             </button>

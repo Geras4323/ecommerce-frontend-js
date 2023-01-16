@@ -5,7 +5,7 @@ import { AppContext } from '../contexts/AppContext';
 
 import { ProductDetail } from './ProductDetail';
 
-function ProductCard({ product }) {
+function ProductCard({ product, logged=false }) {
   const { cart, addToCart, setIsShoppingCartShown } = React.useContext(AppContext);
 
   const [isAdded, setIsAdded] = React.useState(false)
@@ -33,7 +33,7 @@ function ProductCard({ product }) {
       <img
         src={product.image}
         alt={product.name}
-        className="w-36 h-36 rounded-2xl object-cover   hover:cursor-pointer   sm:w-60 sm:h-60"
+        className="w-36 h-36 rounded-2xl object-cover border-b border-r border-border shadow-md   hover:cursor-pointer   sm:w-60 sm:h-60"
         onClick={handleShowDetail}
       />
       {isDetailShown &&
@@ -47,18 +47,22 @@ function ProductCard({ product }) {
       <div className="flex justify-between items-start mt-3   sm:items-center">
         <div>
           <p className="font-bold text-md mt-0 mb-1">{`$ ${product.price}`}</p>
-          <p className="text-sm text-very-light-pink my-0 w-24   sm:w-full">{product.name}</p>
+          <p className="text-sm text-gray-400 my-0 w-24   sm:w-full sm:text-base">{product.name}</p>
         </div>
-        {!isAdded
-          ? <figure
-              onClick={() => handleAddProduct(product)}
-              className="m-0   hover:cursor-pointer">
-              <img src="/assets/icons/bt_add_to_cart.svg" />
-            </figure>
-          : <figure
-              className="m-0 rounded-full border-b border-b-very-light-pink">
-              <img src="/assets/icons/bt_added_to_cart.svg" />
-            </figure>
+        {logged &&
+          <div>
+            {!isAdded
+              ? <figure
+                  onClick={() => handleAddProduct(product)}
+                  className="m-0   hover:cursor-pointer">
+                  <img src="/assets/icons/bt_add_to_cart.svg" />
+                </figure>
+              : <figure
+                  className="m-0 rounded-full border-b border-b-very-light-pink">
+                  <img src="/assets/icons/bt_added_to_cart.svg" />
+                </figure>
+            }
+          </div>
         }
         {/* <figure
           onClick={() => handleClick(product)}
