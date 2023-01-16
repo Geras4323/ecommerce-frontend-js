@@ -12,6 +12,9 @@ import { verifyToken } from 'src/utils/verifyToken';
 function Showroom() {
   const [email, setEmail] = React.useState();
 
+  const [category, setCategory] = React.useState(0)
+
+
   React.useEffect(() => {
     async function getMail() {
       const login_token = Cookies.get('login-token');
@@ -31,8 +34,8 @@ function Showroom() {
         <title>Showroom | Yard Sale</title>
       </Head>
       <div>
-        <Header email={email} />
-        <ProductsList email={email} />
+        <Header email={email} setCategory={setCategory} />
+        <ProductsList email={email} category={category} />
       </div>
     </>
   );

@@ -6,7 +6,7 @@ function DesktopMenu() {
 
   function handleSignOut() {
     Cookies.remove('login-token');
-    window.location.href = '/auth/login';
+    window.location.href = '/';
   }
 
   return (

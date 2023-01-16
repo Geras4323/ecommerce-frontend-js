@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .Header_Item {
-  @apply border border-white p-2 rounded-lg   hover:border-hospital-green hover:text-hospital-green
+  @apply border border-white p-2 rounded-lg   hover:border-hospital-green hover:text-hospital-green hover:cursor-pointer
 }
 
 .MobileMenu_Item {
-  @apply text-black font-bold
+  @apply text-black font-bold   hover:cursor-pointer
 }

@@ -2,12 +2,22 @@ import React from 'react';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 
-function MobileMenu({ email }) {
+import { AppContext } from 'src/contexts/AppContext';
+
+
+function MobileMenu({ email, setCategory }) {
+  const { setIsMenuShown } = React.useContext(AppContext);
 
   function handleSignOut() {
     Cookies.remove('login-token');
     window.location.href = '/auth/login';
   }
+
+  function handleChangeCategory(categoryID) {
+    setCategory(categoryID);
+    setIsMenuShown(false);
+  }
+
 
   return (
     <div className="bg-white w-screen h-screen p-6 border-t border-t-very-light-pink fixed left-0 top-16 z-10  md:hidden">
@@ -16,19 +26,22 @@ function MobileMenu({ email }) {
           <span className="MobileMenu_Item">CATEGORIES</span>
         </li>
         <li className="mb-5">
-          <a href="#" className="MobileMenu_Item">All</a>
+          <div onClick={() => handleChangeCategory(0)} className="MobileMenu_Item">All</div>
         </li>
         <li className="mb-5">
-          <a href="#" className="MobileMenu_Item">Clothes</a>
+          <div onClick={() => handleChangeCategory(3)} className="MobileMenu_Item">Bath</div>
         </li>
         <li className="mb-5">
-          <a href="#" className="MobileMenu_Item">Electronics</a>
+          <div onClick={() => handleChangeCategory(2)} className="MobileMenu_Item">Clothes</div>
         </li>
         <li className="mb-5">
-          <a href="#" className="MobileMenu_Item">Furnitures</a>
+          <div onClick={() => handleChangeCategory(1)} className="MobileMenu_Item">Electronics</div>
         </li>
         <li className="mb-5">
-          <a href="#" className="MobileMenu_Item">Toys</a>
+          <div onClick={() => handleChangeCategory(5)} className="MobileMenu_Item">Furniture</div>
+        </li>
+        <li className="mb-5">
+          <div onClick={() => handleChangeCategory(4)} className="MobileMenu_Item">Lighting</div>
         </li>
       </ul>
 

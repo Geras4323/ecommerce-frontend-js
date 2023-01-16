@@ -10,7 +10,7 @@ import { ShoppingCart } from '../components/ShoppingCart';
 import { AppContext } from '../contexts/AppContext';
 
 
-function Header({ email }) {
+function Header({ email, setCategory }) {
   const {
     cart,
     isShoppingCartShown,
@@ -46,19 +46,22 @@ function Header({ email }) {
         </Link>
         <ul className="p-0 m-0 hidden   md:flex items-center h-16 ml-3 text-gray-400">
           <li>
-            <a href="#" className="Header_Item">All</a>
+            <div onClick={() => setCategory(0)} className="Header_Item">All</div>
           </li>
           <li>
-            <a href="#" className="Header_Item">Clothes</a>
+            <div onClick={() => setCategory(3)} className="Header_Item">Bath</div>
           </li>
           <li>
-            <a href="#" className="Header_Item">Electronics</a>
+            <div onClick={() => setCategory(2)} className="Header_Item">Clothes</div>
           </li>
           <li>
-            <a href="#" className="Header_Item">Furniture</a>
+            <div onClick={() => setCategory(1)} className="Header_Item">Electronics</div>
           </li>
           <li>
-            <a href="#" className="Header_Item">Toys</a>
+            <div onClick={() => setCategory(5)} className="Header_Item">Furniture</div>
+          </li>
+          <li>
+            <div onClick={() => setCategory(4)} className="Header_Item">Lighting</div>
           </li>
         </ul>
       </div>
@@ -88,7 +91,7 @@ function Header({ email }) {
             : <Link href='/auth/login'><a className='mr-3 text-base text-hospital-green'>Login</a></Link>
           }
           {isMenuShown ? <DesktopMenu /> : null}
-          {isMenuShown ? <MobileMenu email={email} /> : null}
+          {isMenuShown ? <MobileMenu email={email} setCategory={setCategory} /> : null}
           {isShoppingCartShown ? <ShoppingCart closeShoppingCart={handleShowShoppingCart}/> : null}
         </ul>
       </div>

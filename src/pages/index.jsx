@@ -18,11 +18,9 @@ function Home() {
         const { email } = await verifyToken(login_token);
         setEmail(email);
         setLogged(true);
-        console.log('logged')
       } else {
         setEmail(undefined);
         setLogged(false);
-        console.log('not logged')
       }
     }
     getAccount()
