@@ -5,6 +5,9 @@ const nextConfig = {
   images: {
     domains: ['api.lorem.space'],
   },
+  env: {
+    BASE_URL: process.env.BASE_URL,
+  }
 };
 
 const withPWA = require('next-pwa')({
