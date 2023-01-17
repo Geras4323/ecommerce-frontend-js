@@ -16,6 +16,9 @@ function NotFound() {
         <img src="/assets/logos/error404.png" alt="logo" className="w-40 mb-12   md:w-48   lg:w-52" />
         <p className="text-xl mb-4">Oops! Nothing to see here!</p>
         <p className="text-lg text-very-light-pink">Looks like this page does not exist.</p>
+        <Link href='/'>
+          <a className='mt-4 text-lg font-bold text-hospital-green underline'>Back to home</a>
+        </Link>
       </div>
     </>
   );

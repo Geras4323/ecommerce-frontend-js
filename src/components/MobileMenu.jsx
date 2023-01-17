@@ -48,7 +48,7 @@ function MobileMenu({ email, setCategory }) {
       {email &&
         <ul className="m-6">
           <li className="mb-5">
-            <p className="text-md text-gray-500 font-light">{email}</p>
+            <p className="text-md text-gray-500">{email}</p>
           </li>
           <li className="mb-5">
             <Link href="/my-orders" className="MobileMenu_Item">My orders</Link>

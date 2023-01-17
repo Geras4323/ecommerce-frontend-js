@@ -1,21 +1,11 @@
 import React from 'react';
 
-import { AppContext } from '../contexts/AppContext';
-
 
 function ProductDetail({ product, handleAddProduct, isAdded, setIsDetailShown }) {
-//  const { isShoppingCartShown, isMenuShown } = React.useContext(AppContext);
 
   const handleCloseDetail = () => {
     setIsDetailShown(false)
   }
-/*
-  React.useEffect(() => {
-    if (isShoppingCartShown || isMenuShown) {
-      setIsDetailShown(false);
-    }
-  })
-*/
 
 
   return (
@@ -37,17 +27,17 @@ function ProductDetail({ product, handleAddProduct, isAdded, setIsDetailShown })
         <div className="h-full mt-6 mx-6 flex flex-col justify-between">
           <div className="h-full flex flex-col">
             <section>
-              <p className="text-xl mb-1 font-bold">{`$ ${product.price}`}</p>
-              <p className="text-lg mb-6 text-very-light-pink">{product.name}</p>
+              <p className="text-xl text-black mb-1 font-bold">{`$ ${product.price}`}</p>
+              <p className="text-lg mb-6 text-gray-500">{product.name}</p>
             </section>
             <div className="h-4/5 overflow-y-auto">
-              <p className="h-4/5 text-md text-very-light-pink">{product.description}</p>
+              <p className="h-4/5 text-md text-gray-500">{product.description}</p>
             </div>
           </div>
 
           {!isAdded
             ? <button
-                className="h-14 mt-6 bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold flex justify-center items-center"
+                className="h-14 mt-6 bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold flex justify-center items-center gap-3"
                 onClick={() => handleAddProduct(product)}
               >
                 <img src="/assets/icons/bt_add_to_cart.svg" alt="add to cart" />

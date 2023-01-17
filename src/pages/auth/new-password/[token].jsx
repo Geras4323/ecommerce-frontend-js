@@ -72,10 +72,10 @@ function NewPassword() {
       </Head>
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
-          <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   sm:hidden" />
+          <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12" />
 
           <h1 className="text-lg mb-3 text-center font-bold">Create a new password</h1>
-          <p className="text-gray-500 text-md font-light mt-0 mb-8 text-center">Enter a new password for your account</p>
+          <p className="text-gray-600 text-md mt-0 mb-8 text-center">Enter a new password for your account</p>
 
           <form className="flex flex-col w-full" ref={form}>
             <div className={`mb-5 flex flex-row justify-start items-center gap-3 ${meetsLength ? 'text-green-400' : 'text-red-400'}`}>

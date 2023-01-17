@@ -80,7 +80,7 @@ function CreateAccount() {
           <div className='w-full mb-9 flex flex-row items-center'>
             <h1 className="text-lg text-start w-full font-bold">New account</h1>
             <Link href='/auth/login'>
-              <p className="w-full text-right text-sm text-hospital-green font-bold   hover:cursor-pointer">Back to login</p>
+              <p className="w-full text-right text-base text-hospital-green font-bold   hover:cursor-pointer">Back to login</p>
             </Link>
           </div>
 

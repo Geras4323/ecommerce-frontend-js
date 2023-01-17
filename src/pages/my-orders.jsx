@@ -15,13 +15,17 @@ function MyOrders() {
   React.useEffect(() => {
     async function fetchOrders() {
       const login_token = Cookies.get('login-token');
-      const config = {
-        headers:{
-          Authorization: `Bearer ${login_token}`,
-        }
-      };
-      const myOrders = await api.get('/profile/my-orders', config);
-      setOrders(myOrders.data);
+      if (login_token) {
+        const config = {
+          headers:{
+            Authorization: `Bearer ${login_token}`,
+          }
+        };
+        const myOrders = await api.get('/profile/my-orders', config);
+        setOrders(myOrders.data);
+      } else {
+        setOrders(undefined);
+      }
     }
 
     fetchOrders()
@@ -41,16 +45,25 @@ function MyOrders() {
             </Link>
           </div>
 
-          <div className="flex flex-col gap-4">
-            {orders.map((order, index) => (
-                <MyOrdersItem
-                key={order.id}
-                  order={order}
-                  last={index === (orders.length)-1}
-                />
-              ))
-            }
-          </div>
+          {orders
+            ? orders.length > 0
+              ? <div className="flex flex-col gap-4">
+                  {orders.map((order, index) => (
+                      <MyOrdersItem
+                      key={order.id}
+                        order={order}
+                        last={index === (orders.length)-1}
+                      />
+                    ))
+                  }
+                </div>
+              : <p className='text-center text-lg'>You have no orders yet!</p>
+
+            : <div className='w-80 text-lg flex flex-col items-center text-center'>
+                <p>You must be logged in to see your orders</p>
+              </div>
+          }
+
         </div>
       </div>
     </>

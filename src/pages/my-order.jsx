@@ -139,7 +139,7 @@ function MyOrder() {
               <button
                 onClick={handleReservation}
                 disabled={cart.length === 0}
-                className={`${cart.length === 0 ? 'bg-black bg-opacity-40 text-red-400' : 'bg-hospital-green'} border-none rounded-lg text-white w-full text-md font-bold h-12`}
+                className={`${cart.length === 0 ? 'bg-trnsparent text-red-400' : 'bg-hospital-green'} border-none rounded-lg text-white w-full text-md font-bold h-12`}
               >
                 {cart.length === 0 ? 'No items in cart!' : 'Make reservation'}
               </button>

@@ -20,10 +20,10 @@ function DesktopMenu() {
           <Link href="/auth/my-account">My account</Link>
         </li>
 
-        <li className="text-end pt-5 border-t border-t-very-light-pink mb-5">
+        <li className="text-end pt-4 border-t border-t-very-light-pink mb-5">
           <span
             onClick={handleSignOut}
-            className="text-hospital-green text-sm cursor-pointer"
+            className="text-hospital-green text-sm font-bold cursor-pointer"
           >
             Sign out
           </span>

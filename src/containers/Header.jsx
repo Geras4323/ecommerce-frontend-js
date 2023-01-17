@@ -33,7 +33,7 @@ function Header({ email, setCategory }) {
 
 
   return (
-    <nav className="fixed top-0 left-0 right-0  bg-white z-10 flex justify-between px-6 border-b border-b-very-light-pink">
+    <nav className="fixed top-0 left-0 right-0 bg-white z-10 flex justify-between px-6 border-b border-b-very-light-pink shadow-md">
       <img
         src="/assets/icons/icon_menu.svg" alt="menu"
         className="md:hidden   hover:cursor-pointer"
@@ -44,7 +44,7 @@ function Header({ email, setCategory }) {
         <Link href="/">
           <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-24   hover:cursor-pointer" />
         </Link>
-        <ul className="p-0 m-0 hidden   md:flex items-center h-16 ml-3 text-gray-400">
+        <ul className="p-0 m-0 h-16 ml-3 hidden items-center text-gray-400   md:flex md:flex-row md:gap-1">
           <li>
             <div onClick={() => setCategory(0)} className="Header_Item">All</div>
           </li>
@@ -71,7 +71,7 @@ function Header({ email, setCategory }) {
           {email
             ? <div className="p-0 m-0 flex items-center h-16">
                 <li
-                    className="text-gray-400 text-sm mr-3 hidden   md:block   hover:cursor-pointer hover:text-hospital-green"
+                    className="text-gray-500 text-base mr-3 hidden   md:block   hover:cursor-pointer hover:text-hospital-green"
                     onClick={handleShowMenu}
                   >
                     {email}
@@ -80,7 +80,7 @@ function Header({ email, setCategory }) {
                     className="relative   hover:cursor-pointer"
                     onClick={handleShowShoppingCart}
                   >
-                  <img src="/assets/icons/icon_shopping_cart.svg" alt="shopping cart" />
+                  <img src="/assets/icons/icon_shopping_cart.svg" className='drop-shadow-lg' alt="shopping cart" />
                   {cart.length > 0
                     && <div className="w-4 h-4 bg-hospital-green rounded-full text-sm font-bold absolute -top-1 -right-1 flex justify-center items-center">
                         {cart.length}
@@ -88,7 +88,7 @@ function Header({ email, setCategory }) {
                   }
                 </li>
               </div>
-            : <Link href='/auth/login'><a className='mr-3 text-base text-hospital-green'>Login</a></Link>
+            : <Link href='/auth/login'><a className='mr-3 text-base font-bold text-hospital-green'>Login</a></Link>
           }
           {isMenuShown ? <DesktopMenu /> : null}
           {isMenuShown ? <MobileMenu email={email} setCategory={setCategory} /> : null}

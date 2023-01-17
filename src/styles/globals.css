@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .Header_Item {
-  @apply border border-white p-2 rounded-lg   hover:border-hospital-green hover:text-hospital-green hover:cursor-pointer
+  @apply border-b border-r border-border p-2 rounded-lg shadow-md   hover:border-hospital-green hover:text-hospital-green hover:cursor-pointer
 }
 
 .MobileMenu_Item {

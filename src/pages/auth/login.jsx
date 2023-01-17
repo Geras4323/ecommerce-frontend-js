@@ -64,7 +64,7 @@ function Login() {
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
           <Link href='/'>
-            <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   sm:hidden   hover:cursor-pointer" />
+            <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   hover:cursor-pointer" />
           </Link>
           <h1 className="text-lg mb-9 text-start w-full font-bold">Login</h1>
 
@@ -101,19 +101,19 @@ function Login() {
             <button
               type="button"
               disabled={isSomeEmpty}
-              className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
+              className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white hover:font-bold'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
               onClick={handleLogin}
             >
               Log in
             </button>
 
             <Link href='/auth/recover-password'>
-              <a className="text-hospital-green text-md text-center mb-10">Forgot my password</a>
+              <a className="mb-10 text-hospital-green text-center font-bold">Forgot my password</a>
             </Link>
           </form>
 
           <Link href='/auth/create-account'>
-            <div className='bg-white flex justify-center items-center border border-hospital-green rounded-lg text-hospital-green w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8   hover:bg-hospital-green hover:text-white   transition-all duration-200'>
+            <div className='bg-white flex justify-center items-center border border-hospital-green rounded-lg text-hospital-green w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8   hover:bg-hospital-green hover:text-white hover:font-bold   transition-all duration-200'>
               Sign up
             </div>
           </Link>

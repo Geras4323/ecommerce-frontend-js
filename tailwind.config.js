@@ -11,17 +11,17 @@ module.exports = {
         ...theme('colors'),
         'very-light-pink': '#C7C7C7',
         'text-input-field': '#F7F7F7',
-        'hospital-green': '#ACD9B2',
+        'hospital-green': '#74c27e',
       }),
       textColor: {
-        'very-light-pink': '#C7C7C7',
+        'very-light-pink': '#686e79',
         'text-input-field': '#F7F7F7',
-        'hospital-green': '#ACD9B2',
+        'hospital-green': '#74c27e',
       },
       colors: {
         'very-light-pink': '#C7C7C7',
         'text-input-field': '#F7F7F7',
-        'hospital-green': '#ACD9B2',
+        'hospital-green': '#74c27e',
         'border': '#DFDFDF',
       },
       fontFamily: {

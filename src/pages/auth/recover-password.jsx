@@ -52,7 +52,7 @@ function RecoverPassword() {
       </Head>
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
-          <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-10   sm:hidden" />
+          <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-10" />
 
           <p className='w-full mb-6 text-left'>
             Enter your account&apos;s email address. You will receive a password reset link.

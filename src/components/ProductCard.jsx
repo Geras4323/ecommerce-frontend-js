@@ -29,7 +29,7 @@ function ProductCard({ product, logged=false }) {
 
 
   return (
-    <div className="w-36   sm:w-60">
+    <div className="w-36 border-b border-very-light-pink rounded-xl pb-3   sm:w-60">
       <img
         src={product.image}
         alt={product.name}
@@ -44,10 +44,10 @@ function ProductCard({ product, logged=false }) {
           setIsDetailShown={setIsDetailShown}
         />
       }
-      <div className="flex justify-between items-start mt-3   sm:items-center">
+      <div className="flex justify-between items-start mt-3 px-3   sm:items-center">
         <div>
           <p className="font-bold text-md mt-0 mb-1">{`$ ${product.price}`}</p>
-          <p className="text-sm text-gray-400 my-0 w-24   sm:w-full sm:text-base">{product.name}</p>
+          <p className="text-sm text-gray-500 my-0 w-24   sm:w-full sm:text-base">{product.name}</p>
         </div>
         {logged &&
           <div>
