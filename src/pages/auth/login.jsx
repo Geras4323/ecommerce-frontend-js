@@ -12,6 +12,8 @@ function Login() {
   const [error, setError] = React.useState();
   const [isSomeEmpty, setIsSomeEmpty] = React.useState(true);
 
+  const [logging, setLogging] = React.useState(false);
+
 
   function checkEmpty() {
     const formData = new FormData(form.current);
@@ -31,6 +33,7 @@ function Login() {
   }
 
   async function handleLogin() {
+    setLogging(true);
     try {
       const formData = new FormData(form.current);
       const body = {
@@ -53,6 +56,7 @@ function Login() {
       } else {
         setError(responseError);
       }
+      setLogging(false);
     }
   }
 
@@ -98,14 +102,24 @@ function Login() {
               <p className='text-red-400'>{error}</p>
             }
 
-            <button
-              type="button"
-              disabled={isSomeEmpty}
-              className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white hover:font-bold'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
-              onClick={handleLogin}
-            >
-              Log in
-            </button>
+            {logging
+              ? <div className='mt-4 mb-8 bg-hospital-green bg-opacity-50 border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12'>
+                  <span className='h-full flex justify-center items-center animate-spin'>
+                    <svg className='h-3/5 text-white' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>
+                      <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
+                      <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+                    </svg>
+                  </span>
+                </div>
+              : <button
+                  type="button"
+                  disabled={isSomeEmpty}
+                  className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white hover:font-bold'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
+                  onClick={handleLogin}
+                >
+                  Log in
+                </button>
+            }
 
             <Link href='/auth/recover-password'>
               <a className="mb-10 text-hospital-green text-center font-bold">Forgot my password</a>

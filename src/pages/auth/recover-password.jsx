@@ -11,6 +11,8 @@ function RecoverPassword() {
   const [isEmail, setIsEmail] = React.useState(false);
   const [error, setError] = React.useState();
 
+  const [sending, setSending] = React.useState(false);
+
   function checkIsEmail() {
     const formData = new FormData(form.current);
     const email = formData.get('email');
@@ -22,6 +24,7 @@ function RecoverPassword() {
   }
 
   async function handleRecovery() {
+    setSending(true);
     try {
       const formData = new FormData(form.current);
       const body = {
@@ -42,6 +45,7 @@ function RecoverPassword() {
       } else {
         setError(responseError);
       }
+      setSending(false);
     }
   }
 
@@ -57,14 +61,6 @@ function RecoverPassword() {
           <p className='w-full mb-6 text-left'>
             Enter your account&apos;s email address. You will receive a password reset link.
           </p>
-          <div className='w-full mb-6 flex flex-row items-center gap-3 text-blue-500'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-4 h-4 fill-current'>
-              <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zm32 224c0 17.7-14.3 32-32 32s-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32z"/>
-            </svg>
-            <p className='w-full text-left'>
-              Please check your spam folder.
-            </p>
-          </div>
 
           <form action="/" className="flex flex-col w-full" ref={form}>
             <label htmlFor="email" className="text-sm font-bold mb-1">Email address</label>
@@ -81,14 +77,25 @@ function RecoverPassword() {
               <p className='text-red-400'>{error}</p>
             }
 
-            <button
-              type="button"
-              disabled={!isEmail}
-              className={`${isEmail ? 'bg-hospital-green text-white' : 'bg-black bg-opacity-20 text-gray-400'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8`}
-              onClick={handleRecovery}
-            >
-              Send email
-            </button>
+            {sending
+              ? <div className='mt-4 mb-8 bg-hospital-green bg-opacity-50 border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12'>
+                  <span className='h-full flex justify-center items-center animate-spin'>
+                    <svg className='h-3/5 text-white' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>
+                      <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
+                      <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'></path>
+                    </svg>
+                  </span>
+                </div>
+              : <button
+                  type="button"
+                  disabled={!isEmail}
+                  className={`${isEmail ? 'bg-hospital-green text-white' : 'bg-black bg-opacity-20 text-gray-400'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8`}
+                  onClick={handleRecovery}
+                >
+                  Send email
+                </button>
+            }
+
           </form>
         </div>
       </div>

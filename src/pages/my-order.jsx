@@ -66,6 +66,15 @@ function MyOrder() {
         amount: 0,
       }
       const { data: payment } = await api.post('/payments', paymentBody, config);
+      console.log('payment made')
+
+      // Send confirmation emails
+      const confirmationBody = {
+        userID: userId,
+        orderID: order.id,
+      }
+      const { data: confirmation } = await api.post('/orders/confirmation', confirmationBody, config);
+      console.log(confirmation);
 
       setMakingReservation(false);
       setReservationMade(true);
@@ -164,16 +173,18 @@ function MyOrder() {
                     </svg>
                     Reservation Made
                 </div>
-                <div
-                  onClick={emptyCart}
-                  className='mt-6 text-lg flex flex-col items-center gap-4'
-                >
-                  <Link href='/my-orders'>
+                <Link href='/my-orders'>
+                  <div
+                    onClick={emptyCart}
+                    className='mt-6 bg-white flex justify-center items-center border border-hospital-green rounded-lg text-hospital-green w-full cursor-pointer text-md font-bold h-12   hover:bg-hospital-green hover:text-white hover:font-bold   transition-all duration-200'
+                  >
                     See my orders
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
             }
+
+            <p className='mt-4 text-base text-very-light-pink'>You will receive an email cointaining your reservation details.</p>
 
             {reservationError &&
               <p className='mt-4 text-red-500 text-md'>Something went wrong :(</p>
