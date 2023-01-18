@@ -66,7 +66,6 @@ function MyOrder() {
         amount: 0,
       }
       const { data: payment } = await api.post('/payments', paymentBody, config);
-      console.log('payment made')
 
       // Send confirmation emails
       const confirmationBody = {
