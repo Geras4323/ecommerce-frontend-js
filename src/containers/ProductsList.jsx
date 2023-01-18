@@ -22,7 +22,7 @@ function ProductsList({ email, category }) {
 
   return (
     <section className="mt-24 mb-8">
-      <div className="grid grid-cols-autosm gap-6 place-content-center   sm:grid-cols-automd">
+      <div className="px-4 grid grid-cols-autosm gap-6 place-content-center   sm:grid-cols-automd">
 
         {category === 0
           ? products.map(product => (

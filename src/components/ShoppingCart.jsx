@@ -11,7 +11,6 @@ function ShoppingCart({closeShoppingCart}) {
   const { cart } = React.useContext(AppContext);
 
 
-
   return (
     <React.Fragment>
       <div
@@ -34,12 +33,12 @@ function ShoppingCart({closeShoppingCart}) {
           <section className="max-h-full px-2 overflow-y-auto overflow-y-contain mb-2">
             {cart.length > 0
               ? cart.map((item, index) => (
-              <ShoppingCartItem
-                key={index}
-                product={item}
-                indexValue={index}
-              />
-            ))
+                  <ShoppingCartItem
+                    key={index}
+                    product={item}
+                    indexValue={index}
+                  />
+                ))
               : <p className="text-center text-very-light-pink">Your cart is empty!</p>
             }
           </section>

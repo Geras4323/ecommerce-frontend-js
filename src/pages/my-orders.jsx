@@ -36,7 +36,7 @@ function MyOrders() {
       <Head>
         <title>My Orders | Yard Sale</title>
       </Head>
-      <div className="pt-6 w-full h-screen grid place-items-center">
+      <div className="pt-6 pb-4 w-full h-screen grid place-items-center">
         <div className="grid w-80">
           <div className="flex flex-row justify-between items-center">
             <h1 className="text-lg mb-10 font-bold">My orders</h1>
@@ -50,7 +50,7 @@ function MyOrders() {
               ? <div className="flex flex-col gap-4">
                   {orders.map((order, index) => (
                       <MyOrdersItem
-                      key={order.id}
+                        key={order.id}
                         order={order}
                         last={index === (orders.length)-1}
                       />

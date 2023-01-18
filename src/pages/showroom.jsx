@@ -10,7 +10,7 @@ import { verifyToken } from 'src/utils/verifyToken';
 
 
 function Showroom() {
-  const [email, setEmail] = React.useState();
+  const [email, setUser] = React.useState();
 
   const [category, setCategory] = React.useState(0)
 
@@ -20,9 +20,9 @@ function Showroom() {
       const login_token = Cookies.get('login-token');
       if (login_token) {
         const { email } = await verifyToken(login_token);
-        setEmail(email);
+        setUser(email);
       } else {
-        setEmail(undefined);
+        setUser(undefined);
       }
     }
     getMail();

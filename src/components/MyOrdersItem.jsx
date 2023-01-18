@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 import { api } from 'src/utils/axiosConnection';
 
 function MyOrdersItem({ order, last=false }) {
@@ -27,12 +29,14 @@ function MyOrdersItem({ order, last=false }) {
       </p>
 
       {last &&
-        <span className='text-gray-300'>Last</span>
+        <span className='text-gray-400'>Last</span>
       }
 
       <div className="flex flex-row items-center gap-4 font-bold">
         <p>$ {order.total}</p>
-        <img src="/assets/icons/flechita.svg" alt="arrow" />
+        <Link href={`/order-details/${order.id}`}>
+          <img src="/assets/icons/flechita.svg" alt="arrow" className='hover:cursor-pointer' />
+        </Link>
       </div>
     </div>
   );

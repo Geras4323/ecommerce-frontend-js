@@ -65,7 +65,7 @@ function Login() {
       <Head>
         <title>Login | Yard Sale</title>
       </Head>
-      <div className="w-screen h-screen grid justify-center items-center">
+      <div className="w-screen h-screen p-4 grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
           <Link href='/'>
             <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   hover:cursor-pointer" />
@@ -127,7 +127,7 @@ function Login() {
           </form>
 
           <Link href='/auth/create-account'>
-            <div className='bg-white flex justify-center items-center border border-hospital-green rounded-lg text-hospital-green w-full cursor-pointer text-md font-bold h-12 mt-4 mb-8   hover:bg-hospital-green hover:text-white hover:font-bold   transition-all duration-200'>
+            <div className='bg-white flex justify-center items-center border border-hospital-green rounded-lg text-hospital-green w-full cursor-pointer text-md font-bold h-12 mt-4   hover:bg-hospital-green hover:text-white hover:font-bold   transition-all duration-200'>
               Sign up
             </div>
           </Link>

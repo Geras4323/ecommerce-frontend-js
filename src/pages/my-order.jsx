@@ -102,12 +102,12 @@ function MyOrder() {
       <Head>
         <title>My Order | Yard Sale</title>
       </Head>
-      <div className="w-full h-screen grid place-items-center">
+      <div className="w-full h-screen p-4 flex justify-center">
 
         <img src="/assets/logos/logo_yard_sale.svg" alt="logo"
-        className="w-26 fixed top-6 left-8   sm:w-32" />
+        className="hidden w-32 fixed top-6 left-8   md:block" />
 
-        <div className="grid w-80">
+        <div className="w-96 h-full flex flex-col justify-center">
           <div className="flex flex-row justify-between items-center">
             <h1 className="text-lg mb-10 font-bold">My order</h1>
             <div
@@ -120,7 +120,7 @@ function MyOrder() {
             </div>
           </div>
 
-          <div className="flex flex-col">
+          <div className="max-h-full flex flex-col">
             <div className="flex flex-row justify-between h-16 items-center bg-text-input-field mb-6 rounded-lg px-6">
               <p className="flex flex-col">
                 <span className="text-md font-bold">{currentDate}</span>
@@ -136,12 +136,14 @@ function MyOrder() {
               </p>
             </div>
 
-            {cart.map((item, index) => (
-              <MyOrderItem
-                key={index}
-                product={item}
-              />
-            ))}
+            <section className="max-h-96 px-2 overflow-y-auto overflow-y-contain mb-2">
+              {cart.map((item, index) => (
+                <MyOrderItem
+                  key={index}
+                  product={item}
+                />
+              ))}
+            </section>
 
             {!makingReservation && !reservationMade &&
               <button
@@ -149,7 +151,7 @@ function MyOrder() {
                 disabled={cart.length === 0}
                 className={`${cart.length === 0 ? 'bg-trnsparent text-red-400' : 'bg-hospital-green'} border-none rounded-lg text-white w-full text-md font-bold h-12`}
               >
-                {cart.length === 0 ? 'No items in cart!' : 'Make reservation'}
+                {cart.length === 0 ? 'No items in cart!' : 'Place order'}
               </button>
             }
             {makingReservation && !reservationMade &&
@@ -183,7 +185,7 @@ function MyOrder() {
               </div>
             }
 
-            <p className='mt-4 text-base text-very-light-pink'>You will receive an email cointaining your reservation details.</p>
+            <p className='my-4 text-base text-very-light-pink'>You will receive an email cointaining your reservation details.</p>
 
             {reservationError &&
               <p className='mt-4 text-red-500 text-md'>Something went wrong :(</p>

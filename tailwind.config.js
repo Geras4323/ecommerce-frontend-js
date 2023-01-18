@@ -27,6 +27,11 @@ module.exports = {
       fontFamily: {
         Quicksand: ['Quicksand', 'sans-serif']
       },
+      width: {
+        '128': '32rem',
+        '160': '40rem',
+        '192': '48rem',
+      },
       height: {
         '128': '32rem',
         '160': '40rem',

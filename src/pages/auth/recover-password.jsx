@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { api } from 'src/utils/axiosConnection';
 
@@ -56,7 +57,9 @@ function RecoverPassword() {
       </Head>
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
-          <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-10" />
+          <Link href='/'>
+            <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-10   hover:cursor-pointer" />
+          </Link>
 
           <p className='w-full mb-6 text-left'>
             Enter your account&apos;s email address. You will receive a password reset link.
@@ -97,6 +100,8 @@ function RecoverPassword() {
             }
 
           </form>
+
+          <Link href='/'><a className='text-base text-hospital-green font-bold'>Back to home</a></Link>
         </div>
       </div>
     </>

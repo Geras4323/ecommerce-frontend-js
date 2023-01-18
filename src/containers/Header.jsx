@@ -1,5 +1,4 @@
 import React from 'react';
-import Cookies from 'js-cookie';
 
 import Link from 'next/link';
 
@@ -80,7 +79,7 @@ function Header({ email, setCategory }) {
                     className="relative   hover:cursor-pointer"
                     onClick={handleShowShoppingCart}
                   >
-                  <img src="/assets/icons/icon_shopping_cart.svg" className='drop-shadow-lg' alt="shopping cart" />
+                  <img src="/assets/icons/icon_shopping_cart.svg" alt="shopping cart" />
                   {cart.length > 0
                     && <div className="w-4 h-4 bg-hospital-green rounded-full text-sm font-bold absolute -top-1 -right-1 flex justify-center items-center">
                         {cart.length}
@@ -90,7 +89,7 @@ function Header({ email, setCategory }) {
               </div>
             : <Link href='/auth/login'><a className='mr-3 text-base font-bold text-hospital-green'>Login</a></Link>
           }
-          {isMenuShown ? <DesktopMenu /> : null}
+          {isMenuShown ? <DesktopMenu closeDesktopMenu={handleShowMenu}/> : null}
           {isMenuShown ? <MobileMenu email={email} setCategory={setCategory} /> : null}
           {isShoppingCartShown ? <ShoppingCart closeShoppingCart={handleShowShoppingCart}/> : null}
         </ul>

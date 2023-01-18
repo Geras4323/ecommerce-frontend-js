@@ -75,7 +75,7 @@ function CreateAccount() {
       <Head>
         <title>Create Account | Yard Sale</title>
       </Head>
-      <div className="w-screen h-screen grid justify-center items-center">
+      <div className="w-screen h-screen p-4 grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
           <div className='w-full mb-9 flex flex-row items-center'>
             <h1 className="text-lg text-start w-full font-bold">New account</h1>
