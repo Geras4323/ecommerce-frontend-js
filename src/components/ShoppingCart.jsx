@@ -18,14 +18,11 @@ function ShoppingCart({closeShoppingCart}) {
         onClick={closeShoppingCart}
       ></div>
 
-      <aside className="w-full h-screen  bg-white border border-very-light-pink border-r-0 border-b-0 p-4   sm:w-1/3 pb-6 pr-4 fixed right-0 top-16">
-        <div className="flex flex-row pb-2 rounded-b-xl border-b border-b-very-light-pink px-3">
-          <img
-            src="/assets/icons/flechita.svg"
-            alt="arrow"
-            className="rotate-180 mr-4   hover:cursor-pointer"
-            onClick={closeShoppingCart}
-          />
+      <aside className="w-full h-screen  bg-white border border-very-light-pink border-r-0 border-b-0 p-4   sm:w-2/3   md:w-3/5   lg:w-2/5   xl:w-1/3   pb-6 pr-4 fixed right-0 top-16">
+        <div className="flex flex-row gap-2 pb-2 px-3 rounded-b-xl border-b border-b-very-light-pink">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className='w-3 fill-current text-gray-500   hover:cursor-pointer' onClick={closeShoppingCart}>
+            <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/>
+          </svg>
           <p className="text-lg font-bold">My order</p>
         </div>
 
@@ -49,9 +46,9 @@ function ShoppingCart({closeShoppingCart}) {
                 <span>Total</span>
               </p>
               <p className="text-end font-bold">{`$
-                ${cart.reduce((total, item) => {
+                ${(cart.reduce((total, item) => {
                   return total + item.price;
-                }, 0)}`}
+                }, 0)).toFixed(2)}`}
               </p>
             </div>
 

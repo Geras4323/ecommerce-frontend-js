@@ -10,7 +10,7 @@ function MobileMenu({ email, setCategory }) {
 
   function handleSignOut() {
     Cookies.remove('login-token');
-    window.location.href = '/auth/login';
+    window.location.href = '/';
   }
 
   function handleChangeCategory(categoryID) {

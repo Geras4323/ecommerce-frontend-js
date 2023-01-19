@@ -11,7 +11,9 @@ function EmailSent() {
       </Head>
       <div className="w-screen h-screen grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
-          <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12" />
+          <Link href='/'>
+            <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-32 mb-12   hover:cursor-pointer" />
+          </Link>
 
           <h1 className="text-lg mb-3 text-center font-bold">Email has been sent!</h1>
           <p className="text-gray-500 text-md mt-0 mb-5 text-center">Please check your inbox for instructions on how to reset the password</p>

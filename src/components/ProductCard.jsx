@@ -47,7 +47,7 @@ function ProductCard({ product, logged=false }) {
       }
       <div className="flex justify-between items-start mt-3   sm:items-center">
         <div>
-          <p className="font-bold text-md mt-0 mb-1">{`$ ${product.price}`}</p>
+          <p className="font-bold text-md mt-0 mb-1">{`$ ${product.price.toFixed(2)}`}</p>
           <p className="text-sm text-gray-500 my-0 w-24   sm:w-full sm:text-base">{product.name}</p>
         </div>
         {logged &&

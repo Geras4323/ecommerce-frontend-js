@@ -20,6 +20,7 @@ function ProductsList({ email, category }) {
     }
   }, [category])
 
+
   return (
     <section className="mt-24 mb-8">
       <div className="px-4 grid grid-cols-autosm gap-6 place-content-center   sm:grid-cols-automd">

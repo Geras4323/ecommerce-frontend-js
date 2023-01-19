@@ -8,6 +8,7 @@ import { api } from 'src/utils/axiosConnection';
 
 function Login() {
   const form = React.useRef(null);
+  const button = React.useRef(null);
 
   const [error, setError] = React.useState();
   const [isSomeEmpty, setIsSomeEmpty] = React.useState(true);
@@ -28,7 +29,7 @@ function Login() {
 
   function handleKeyPress(event) {
     if (event.key === 'Enter') {
-      handleLogin();
+      button.current.click();
     }
   }
 
@@ -37,7 +38,7 @@ function Login() {
     try {
       const formData = new FormData(form.current);
       const body = {
-        email: formData.get('email'),
+        email: formData.get('email').toLowerCase(),
         password: formData.get('password')
       }
       const config = {
@@ -78,6 +79,7 @@ function Login() {
             <label htmlFor="email" className="text-sm font-bold mb-1">Email address</label>
             <input
               type="text"
+              style={{textTransform: 'lowercase'}}
               id="email"
               name="email"
               placeholder="email@example.com"
@@ -114,6 +116,7 @@ function Login() {
                 </div>
               : <button
                   type="button"
+                  ref={button}
                   disabled={isSomeEmpty}
                   className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white hover:font-bold'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
                   onClick={handleLogin}

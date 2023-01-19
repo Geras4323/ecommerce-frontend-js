@@ -11,32 +11,61 @@ function CreateAccount() {
 
   const [error, setError] = React.useState();
   const [isSomeEmpty, setIsSomeEmpty] = React.useState(true);
-  const [meetsLength, setMeetsLength] = React.useState(false);
+
+  const [usernameMeetsLength, setUsernameMeetsLength] = React.useState(false);
+  const [passwordMeetsLength, setPasswordMeetsLength] = React.useState(false);
+  const [passwordsMatch, setPasswordsMatch] = React.useState(false);
 
   function checkEmpty() {
     const formData = new FormData(form.current);
     const username = formData.get('username');
     const email = formData.get('email');
     const password = formData.get('password');
+    const re_password = formData.get('re-password');
     const firstName = formData.get('first_name');
     const lastName = formData.get('last_name');
-    if (username.length === 0 || email.length === 0 || password.length < 8 || firstName.length === 0 || lastName.length === 0) {
+    if (username.length < 4 || email.length === 0 || password.length < 8 || (password !== re_password) || firstName.length === 0 || lastName.length === 0) {
       setIsSomeEmpty(true);
     } else {
       setIsSomeEmpty(false);
     }
   }
 
-  function checkRequirements() {
+  function checkUsernameRequirements() {
     const formData = new FormData(form.current);
-    const password = formData.get('password');
-    if (password.length >= 8) {
-      setMeetsLength(true);
+    const username = formData.get('username');
+    if (username.length >= 4) {
+      setUsernameMeetsLength(true);
     } else {
-      setMeetsLength(false);
+      setUsernameMeetsLength(false);
     }
     checkEmpty();
   }
+
+  function checkPasswordRequirements() {
+    const formData = new FormData(form.current);
+    const password = formData.get('password');
+    if (password.length >= 8) {
+      setPasswordMeetsLength(true);
+    } else {
+      setPasswordMeetsLength(false);
+    }
+    checkPasswordsMatch();
+    checkEmpty();
+  }
+
+  function checkPasswordsMatch() {
+    const formData = new FormData(form.current);
+    const password = formData.get('password');
+    const re_password = formData.get('re-password');
+    if (password === re_password) {
+      setPasswordsMatch(true);
+    } else {
+      setPasswordsMatch(false);
+    }
+    checkEmpty();
+  }
+
 
   async function handleCreateAccount() {
     try {
@@ -75,7 +104,7 @@ function CreateAccount() {
       <Head>
         <title>Create Account | Yard Sale</title>
       </Head>
-      <div className="w-screen h-screen p-4 grid justify-center items-center">
+      <div className="w-full h-screen p-4 grid justify-center items-center">
         <div className="w-80 flex flex-col items-center">
           <div className='w-full mb-9 flex flex-row items-center'>
             <h1 className="text-lg text-start w-full font-bold">New account</h1>
@@ -86,16 +115,33 @@ function CreateAccount() {
 
           <form className="flex flex-col w-full" ref={form}>
             <div className="flex flex-col w-full">
-              <label htmlFor="username" className="text-sm font-bold mb-1">Username *</label>
-              <input type="text" onChange={checkEmpty} id="username" name='username' placeholder="Your username" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+
+              <div className='flex flex-row justify-between items-center'>
+                <label htmlFor="username" className="text-sm font-bold mb-1">Username *</label>
+                <div className={`flex flex-row items-center gap-2 fill-current ${usernameMeetsLength ? 'text-green-400' : 'text-red-400'}`}>
+                  {usernameMeetsLength
+                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
+                        <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                      </svg>
+                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
+                        <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+                      </svg>
+                  }
+                  <span className='text-sm'>4 characters long</span>
+                </div>
+              </div>
+              <input type="text" onChange={checkUsernameRequirements} id="username" name='username' placeholder="Your username" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+
 
               <label htmlFor="email" className="text-sm font-bold mb-1">Email *</label>
               <input type="text" onChange={checkEmpty} id="email" name='email' placeholder="email@example.com" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
+
+              {/* 1st password */}
               <div className='flex flex-row justify-between items-center'>
                 <label htmlFor="password" className="text-sm font-bold mb-1">Password *</label>
-                <div className={`flex flex-row items-center gap-2 fill-current ${meetsLength ? 'text-green-400' : 'text-red-400'}`}>
-                  {meetsLength
+                <div className={`flex flex-row items-center gap-2 fill-current ${passwordMeetsLength ? 'text-green-400' : 'text-red-400'}`}>
+                  {passwordMeetsLength
                     ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
                         <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
                       </svg>
@@ -106,13 +152,34 @@ function CreateAccount() {
                   <span className='text-sm'>8 characters long</span>
                 </div>
               </div>
-              <input type="password" onChange={checkRequirements} id="password" name='password' placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+              <input type="password" onChange={checkPasswordRequirements} id="password" name='password' placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+
+              {/* 2nd password */}
+              <div className='flex flex-row justify-between items-center'>
+                <label htmlFor="re-password" className="text-sm font-bold mb-1">Re-Enter Password *</label>
+                <div className={`flex flex-row items-center gap-2 fill-current ${passwordsMatch ? 'text-green-400' : 'text-red-400'}`}>
+                  {passwordsMatch
+                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
+                        <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/>
+                      </svg>
+                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='w-3 h-3 fill-current'>
+                        <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/>
+                      </svg>
+                  }
+                  <span className='text-sm'>Passwords match</span>
+                </div>
+              </div>
+              <input type="password" onChange={checkPasswordsMatch} id="re-password" name='re-password' placeholder="*********" className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+
+
 
               <label htmlFor="first_name" className="text-sm font-bold mb-1">First name *</label>
               <input id="first_name" onChange={checkEmpty} name='first_name' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
 
+
               <label htmlFor="last_name" className="text-sm font-bold mb-1">Last name *</label>
               <input id="last_name" onChange={checkEmpty} name='last_name' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
+
 
               <label htmlFor="phone" className="text-sm font-bold mb-1">Phone</label>
               <input id="phone" name='phone' placeholder='- can be left empty -' className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-5" />
@@ -124,7 +191,7 @@ function CreateAccount() {
 
             <button
               type="button"
-              disabled={isSomeEmpty || !meetsLength}
+              disabled={isSomeEmpty || !passwordMeetsLength}
               onClick={handleCreateAccount}
               className={`${isSomeEmpty ? 'bg-black bg-opacity-20 text-gray-400' : 'bg-hospital-green text-white'} border-none rounded-lg text-white w-full text-md font-bold h-12 mt-4 mb-8 transition-all duration-200`}
             >

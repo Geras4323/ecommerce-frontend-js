@@ -9,7 +9,7 @@ function OrderDetailItem({ product }) {
         </figure>
         <p className="text-very-light-pink">{product.name}</p>
       </div>
-      <p className="w-1/4 text-md text-center font-bold">{`$ ${product.price}`}</p>
+      <p className="w-1/4 text-md text-center font-bold">{`$ ${product.price.toFixed(2)}`}</p>
     </div>
   );
 }

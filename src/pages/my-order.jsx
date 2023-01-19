@@ -40,7 +40,7 @@ function MyOrder() {
       // Generate order for that user
       const orderBody = {
         userID: userId,
-        total: total,
+        total: total.toFixed(2),
       }
       const config = {
         headers: {
@@ -121,7 +121,7 @@ function MyOrder() {
           </div>
 
           <div className="max-h-full flex flex-col">
-            <div className="flex flex-row justify-between h-16 items-center bg-text-input-field mb-6 rounded-lg px-6">
+            <div className="flex flex-row justify-between h-16 items-center bg-text-input-field rounded-lg px-6">
               <p className="flex flex-col">
                 <span className="text-md font-bold">{currentDate}</span>
                 <span className="text-sm text-very-light-pink">
@@ -132,7 +132,7 @@ function MyOrder() {
                 </span>
               </p>
               <p className="text-end font-bold">{`$
-                ${total}`}
+                ${total.toFixed(2)}`}
               </p>
             </div>
 
@@ -149,7 +149,7 @@ function MyOrder() {
               <button
                 onClick={handleReservation}
                 disabled={cart.length === 0}
-                className={`${cart.length === 0 ? 'bg-trnsparent text-red-400' : 'bg-hospital-green'} border-none rounded-lg text-white w-full text-md font-bold h-12`}
+                className={`${cart.length === 0 ? 'bg-trnsparent text-red-400' : 'bg-hospital-green'} mt-2 border-none rounded-lg text-white w-full text-md font-bold h-12`}
               >
                 {cart.length === 0 ? 'No items in cart!' : 'Place order'}
               </button>
@@ -172,7 +172,7 @@ function MyOrder() {
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className='h-3/5 fill-current text-green-800'>
                       <path d="M243.8 339.8C232.9 350.7 215.1 350.7 204.2 339.8L140.2 275.8C129.3 264.9 129.3 247.1 140.2 236.2C151.1 225.3 168.9 225.3 179.8 236.2L224 280.4L332.2 172.2C343.1 161.3 360.9 161.3 371.8 172.2C382.7 183.1 382.7 200.9 371.8 211.8L243.8 339.8zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"/>
                     </svg>
-                    Reservation Made
+                    Order placed
                 </div>
                 <Link href='/my-orders'>
                   <div
@@ -185,7 +185,7 @@ function MyOrder() {
               </div>
             }
 
-            <p className='my-4 text-base text-very-light-pink'>You will receive an email cointaining your reservation details.</p>
+            <p className='my-4 text-base text-very-light-pink'>You will receive an email cointaining your order details.</p>
 
             {reservationError &&
               <p className='mt-4 text-red-500 text-md'>Something went wrong :(</p>

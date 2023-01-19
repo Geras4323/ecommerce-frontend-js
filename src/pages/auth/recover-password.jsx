@@ -7,16 +7,23 @@ import { api } from 'src/utils/axiosConnection';
 
 
 function RecoverPassword() {
-  const form = React.useRef(null);
+  const inputRef = React.useRef(null);
+  const button = React.useRef(null);
 
   const [isEmail, setIsEmail] = React.useState(false);
   const [error, setError] = React.useState();
 
   const [sending, setSending] = React.useState(false);
 
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      button.current.click();
+    }
+  }
+
   function checkIsEmail() {
-    const formData = new FormData(form.current);
-    const email = formData.get('email');
+    const email = inputRef.current.value;
+    console.log(email);
     if (/^[\w\.]{5,30}\+?\w{0,10}@[\w\-\.]{3,}\.\w{2,5}$/.test(email)) {
       setIsEmail(true);
     } else {
@@ -27,9 +34,8 @@ function RecoverPassword() {
   async function handleRecovery() {
     setSending(true);
     try {
-      const formData = new FormData(form.current);
       const body = {
-        email: formData.get('email'),
+        email: inputRef.current.value,
       }
       const config = {
         headers: {
@@ -37,7 +43,7 @@ function RecoverPassword() {
           'Content-Type': 'application/json',
         }
       };
-      const {data} = await api.post('/auth/recovery', body, config);
+      const { data } = await api.post('/auth/recovery', body, config);
       window.location.href = '/auth/email-sent';
     } catch (err) {
       const responseError = err.response.data.error.message;
@@ -65,12 +71,15 @@ function RecoverPassword() {
             Enter your account&apos;s email address. You will receive a password reset link.
           </p>
 
-          <form action="/" className="flex flex-col w-full" ref={form}>
+          <div className="flex flex-col w-full">
             <label htmlFor="email" className="text-sm font-bold mb-1">Email address</label>
             <input
               type="text"
               id='email'
               name="email"
+              ref={inputRef}
+              onKeyDown={handleKeyPress}
+              tabIndex='0'
               onChange={checkIsEmail}
               placeholder="email@example.com"
               className="bg-text-input-field border-none rounded-lg h-10 text-md p-2 mb-6"
@@ -91,6 +100,7 @@ function RecoverPassword() {
                 </div>
               : <button
                   type="button"
+                  ref={button}
                   disabled={!isEmail}
                   className={`${isEmail ? 'bg-hospital-green text-white' : 'bg-black bg-opacity-20 text-gray-400'} border-none rounded-lg w-full text-md font-bold h-12 mt-4 mb-8`}
                   onClick={handleRecovery}
@@ -99,7 +109,7 @@ function RecoverPassword() {
                 </button>
             }
 
-          </form>
+          </div>
 
           <Link href='/'><a className='text-base text-hospital-green font-bold'>Back to home</a></Link>
         </div>
