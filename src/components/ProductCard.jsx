@@ -42,6 +42,7 @@ function ProductCard({ product, logged=false }) {
           handleAddProduct={handleAddProduct}
           isAdded={isAdded}
           setIsDetailShown={setIsDetailShown}
+          logged={logged}
         />
       }
       <div className="flex justify-between items-start mt-3   sm:items-center">

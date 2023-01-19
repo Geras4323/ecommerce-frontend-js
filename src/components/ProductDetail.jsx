@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function ProductDetail({ product, handleAddProduct, isAdded, setIsDetailShown }) {
+function ProductDetail({ product, handleAddProduct, isAdded, setIsDetailShown, logged }) {
 
   const handleCloseDetail = () => {
     setIsDetailShown(false)
@@ -35,20 +35,22 @@ function ProductDetail({ product, handleAddProduct, isAdded, setIsDetailShown })
             </div>
           </div>
 
-          {!isAdded
-            ? <button
-                className="h-14 mt-6 bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold flex justify-center items-center gap-3"
-                onClick={() => handleAddProduct(product)}
-              >
-                <img src="/assets/icons/bt_add_to_cart.svg" alt="add to cart" />
-                Add to cart
-              </button>
-            : <div
-                className="h-12 mt-6 bg-white border border-very-light-pink rounded-lg text-very-light-pink w-full text-md font-bold flex justify-center items-center"
-              >
-              <img src="/assets/icons/bt_added_to_cart.svg" alt="added to cart" />
-              Added to cart
-              </div>
+          {logged
+            ? !isAdded
+              ? <button
+                  className="h-14 mt-6 bg-hospital-green border-none rounded-lg text-white w-full cursor-pointer text-md font-bold flex justify-center items-center gap-3"
+                  onClick={() => handleAddProduct(product)}
+                >
+                  <img src="/assets/icons/bt_add_to_cart.svg" alt="add to cart" />
+                  Add to cart
+                </button>
+              : <div
+                  className="h-12 mt-6 bg-white border border-very-light-pink rounded-lg text-very-light-pink w-full text-md font-bold flex justify-center items-center gap-3"
+                >
+                <img src="/assets/icons/bt_added_to_cart.svg" alt="added to cart" />
+                Added to cart
+                </div>
+            : ''
           }
         </div>
       </aside>

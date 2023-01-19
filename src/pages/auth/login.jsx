@@ -48,6 +48,7 @@ function Login() {
       };
       const {data} = await api.post('/auth/login', body, config);
       Cookies.set('login-token', data.token);
+      setLogging(false);
       window.location.href = '/showroom';
     } catch (err) {
       const responseError = err.response.data.error.message;

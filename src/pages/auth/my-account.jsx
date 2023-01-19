@@ -15,7 +15,12 @@ function MyAccount() {
       const login_token = Cookies.get('login-token');
       if (login_token) {
         const { sub: userId } = await verifyToken(login_token);
-        const { data } = await api.get(`/users/${userId}`);
+        const config = {
+          headers:{
+            Authorization: `Bearer ${login_token}`,
+          }
+        };
+        const { data } = await api.get(`/users/${userId}`, config);
         setUserData(data);
       } else {
         setUserData(undefined);
