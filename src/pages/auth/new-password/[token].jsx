@@ -106,6 +106,7 @@ function NewPassword() {
 
             <label htmlFor="new-password" className="text-sm font-bold mb-1">Password</label>
             <input
+              type='password'
               id="new-password"
               name="new-password"
               autoComplete='off'
@@ -114,6 +115,7 @@ function NewPassword() {
             />
             <label htmlFor="re-new-password" className="text-sm font-bold mb-1">Re-enter Password</label>
             <input
+              type='password'
               id="re-new-password"
               name="re-new-password"
               autoComplete='off'
