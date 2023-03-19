@@ -24,7 +24,14 @@ function CreateAccount() {
     const re_password = formData.get('re-password');
     const firstName = formData.get('first_name');
     const lastName = formData.get('last_name');
-    if (username.length < 4 || email.length === 0 || password.length < 8 || (password !== re_password) || firstName.length === 0 || lastName.length === 0) {
+    if (
+      username.length < 4
+      || (!/^[\w\.]{5,30}\+?\w{0,10}@[\w\-\.]{3,}\.\w{2,5}$/.test(email))
+      || password.length < 8
+      || (password !== re_password)
+      || firstName.length === 0
+      || lastName.length === 0
+    ) {
       setIsSomeEmpty(true);
     } else {
       setIsSomeEmpty(false);
