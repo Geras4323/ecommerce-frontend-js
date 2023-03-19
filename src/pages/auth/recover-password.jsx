@@ -90,7 +90,7 @@ function RecoverPassword() {
             }
 
             {sending
-              ? <div className='mt-4 mb-8 bg-hospital-green bg-opacity-50 border-none rounded-lg text-white w-full cursor-pointer text-md font-bold h-12'>
+              ? <div className='mt-4 mb-8 bg-hospital-green bg-opacity-50 border-none rounded-lg text-white w-full text-md font-bold h-12'>
                   <span className='h-full flex justify-center items-center animate-spin'>
                     <svg className='h-3/5 text-white' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'>
                       <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4'></circle>
