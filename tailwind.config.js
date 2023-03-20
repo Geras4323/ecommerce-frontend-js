@@ -40,7 +40,18 @@ module.exports = {
       gridTemplateColumns: {
         'autosm': 'repeat(auto-fill, 140px)',
         'automd': 'repeat(auto-fill, 240px)'
-      }
+      },
+      animation: {
+        marqueeSlow: 'marquee 20s linear infinite',
+        marqueeMed: 'marquee 15s linear infinite',
+        marqueeFast: 'marquee 10s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateY(0%)' },
+          '100%': { transform: 'translateY(calc(-100% - 12px))' },
+        },
+      },
     },
   },
   plugins: [],
