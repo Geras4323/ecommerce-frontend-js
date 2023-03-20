@@ -18,8 +18,8 @@ export function VerticalImageMarquee({ urls, speed }) {
         }
         flex flex-col justify-around gap-3 mb-3 min-w-full`}
       >
-        {urls.map(url => (
-          <li><MarqueeImage src={url} /></li>
+        {urls.map((url, index) => (
+          <li key={`${index} + 1`}><MarqueeImage src={url} /></li>
         ))}
       </ul>
 
@@ -33,8 +33,8 @@ export function VerticalImageMarquee({ urls, speed }) {
         }
         flex flex-col justify-around gap-3 mb-3 min-w-full`}
       >
-        {urls.map(url => (
-          <li><MarqueeImage src={url} /></li>
+        {urls.map((url, index) => (
+          <li key={`${index} + 2`}><MarqueeImage src={url} /></li>
         ))}
       </ul>
 
