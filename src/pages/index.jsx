@@ -53,26 +53,12 @@ function Home() {
               'https://m.media-amazon.com/images/I/71AVijzvhNL._UX569_.jpg',
               'https://indyschild.com/wp-content/uploads/2016/12/AdobeStock_96977357.jpeg',
               'https://m.media-amazon.com/images/I/41vbmwe7e4L._SY450_.jpg',
-              // Reusing urls
-              'https://5.imimg.com/data5/LW/GN/MY-4990337/bath-soap-500x500.jpg',
-              'https://ae01.alicdn.com/kf/He1a1c6a2db39447f9e9e33e7a21351a13.jpg',
-              'https://m.media-amazon.com/images/I/71TawoxTk6L._UY500_.jpg',
-              'https://m.media-amazon.com/images/I/71AVijzvhNL._UX569_.jpg',
-              'https://indyschild.com/wp-content/uploads/2016/12/AdobeStock_96977357.jpeg',
-              'https://m.media-amazon.com/images/I/41vbmwe7e4L._SY450_.jpg',
             ]}
           />
 
           <VerticalImageMarquee
             speed={'medium'}
             urls={[
-              'https://i5.walmartimages.ca/images/Large/735/328/6000196735328.jpg',
-              'https://m.media-amazon.com/images/I/41Glq0rVOvS._SY445_.jpg',
-              'https://beardoi.s3.ap-south-1.amazonaws.com/uploads/3642-compact-sheesham-beard-comb-512x512.jpg',
-              'https://i0.wp.com/recargasrafaela.com.ar/wp-content/uploads/2022/01/fox_relok_m6pro.jpg',
-              'https://m.media-amazon.com/images/I/418QpEn9JKL._SX425_.jpg',
-              'https://www.collinsdictionary.com/images/full/sock_99256316_1000.jpg',
-              // Reusing urls
               'https://i5.walmartimages.ca/images/Large/735/328/6000196735328.jpg',
               'https://m.media-amazon.com/images/I/41Glq0rVOvS._SY445_.jpg',
               'https://beardoi.s3.ap-south-1.amazonaws.com/uploads/3642-compact-sheesham-beard-comb-512x512.jpg',
