@@ -6,18 +6,23 @@ import Link from 'next/link';
 
 import { verifyToken } from 'src/utils/verifyToken';
 import { VerticalImageMarquee } from 'src/components/VerticalImageMarquee';
+import { AdminUtils } from 'src/components/Admin/AdminUtils';
 
 
-function Home() {
+export default function Home() {
   const [logged, setLogged] = React.useState();
   const [email, setEmail] = React.useState();
+  const [role, setRole] = React.useState();
+  const [isAdminUtilsOpen, setIsAdminUtilsOpen] = React.useState(false);
 
   React.useEffect(() => {
     async function getAccount() {
       const login_token = Cookies.get('login-token');
       if (login_token) {
-        const { email } = await verifyToken(login_token);
+        const { email, role } = await verifyToken(login_token);
+        console.log(role);
         setEmail(email);
+        setRole(role);
         setLogged(true);
       } else {
         setEmail(undefined);
@@ -73,6 +78,11 @@ function Home() {
 
         <div className='w-full md:w-3/4 h-auto flex flex-row justify-center'>
           <div className="w-80 flex flex-col items-center">
+
+
+            {isAdminUtilsOpen && <AdminUtils setIsAdminUtilsOpen={setIsAdminUtilsOpen} />}
+
+
             <img src="/assets/logos/logo_yard_sale.svg" alt="logo" className="w-36 mb-14" />
 
             <div className="w-full pb-5 text-lg border-b border-border">
@@ -80,6 +90,15 @@ function Home() {
 
                 ? <section className='flex flex-col gap-4'>
                     <p>Logged as <b className='text-gray-500 font-normal'>{email}</b></p>
+
+                    {role === 'administrator' &&
+                    <div
+                      onClick={() => setIsAdminUtilsOpen(true)}
+                      className="w-full h-12 rounded-lg flex justify-center items-center border border-border text-hospital-green shadow-md   hover:cursor-pointer hover:bg-hospital-green hover:text-white hover:shadow-lg hover:font-bold   transition-all duration-200"
+                    >
+                      Admin Utilities
+                    </div>}
+
                     <div
                       onClick={handleSignOut}
                       className="w-full h-12 rounded-lg flex justify-center items-center border border-border text-hospital-green shadow-md   hover:cursor-pointer hover:bg-hospital-green hover:text-white hover:shadow-lg hover:font-bold   transition-all duration-200"
@@ -107,11 +126,13 @@ function Home() {
               }
             </div>
 
+
             <Link href="/showroom">
               <div className="w-full h-12 rounded-lg mt-5 flex justify-center items-center border border-border text-lg text-hospital-green shadow-md   hover:cursor-pointer hover:bg-hospital-green hover:text-white hover:shadow-lg hover:font-bold   transition-all duration-200">
                 Go to Showroom
               </div>
             </Link>
+
 
           </div>
         </div>
@@ -119,5 +140,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

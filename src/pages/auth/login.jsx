@@ -50,7 +50,8 @@ function Login() {
       const {data} = await api.post('/auth/login', body, config);
       Cookies.set('login-token', data.token);
       setLogging(false);
-      window.location.href = '/showroom';
+      // window.location.href = '/showroom';////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      window.location.href = '/';
     } catch (err) {
       const responseError = err.response.data.error.message;
       if (responseError === 'Unauthorized') {
