@@ -1,13 +1,7 @@
 import React from 'react';
 import { capitalize } from 'lodash';
 
-import { ProductsAdmin } from './ProductsAdmin';
-import { SuppliersAdmin } from './SuppliersAdmin';
-import { CategoriesAdmin } from './CategoriesAdmin';
-import { UsersAdmin } from './UsersAdmin';
-import { OrdersAdmin } from './OrdersAdmin';
-import { PaymentsAdmin } from './PaymentsAdmin';
-
+import { GenericAdminView } from './GenericAdminView';
 
 
 function CommonButton({ title, setIsDisplaced, openViews, setOpenViews, setSelectedView }) {
@@ -50,7 +44,7 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
     setIsDisplaced(false)
     setTimeout(() => {
       setOpenViews({...views});
-    }, 700)
+    }, 500)
   }
 
   return (
@@ -60,15 +54,21 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
       <div className='w-full h-full absolute bg-black bg-opacity-50'  onClick={() => setIsAdminUtilsOpen(false)} />
 
       {/* The bigger rectangle you see */}
-      <div className='w-3/4 h-3/4 py-6 rounded-2xl bg-slate-100 border border-border z-10 overflow-hidden'>
+      <div className='w-full h-full py-6   sm:w-3/4 sm:h-3/4 sm:rounded-2xl bg-slate-100 border border-border z-10 overflow-hidden relative'>
+
+        <div className='w-5 absolute top-2 right-4 hover:cursor-pointer hover:scale-110 duration-200 z-20'>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className='w-full h-full' onClick={() => setIsAdminUtilsOpen(false)}>
+            <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
+          </svg>
+        </div>
 
 
         {/* Doubled sized container */}
-        <div className={`w-[200%] h-full flex flex-row ${isDisplaced && '-translate-x-1/2'} duration-700`}>
+        <div className={`w-[200%] h-full flex flex-row  ${isDisplaced && '-translate-x-1/2'} duration-500`}>
 
           {/* First sention - seen when not displaced */}
-          <section className='w-full h-full px-6 flex flex-row gap-6'>
-            <div className='w-full h-full flex flex-col items-center gap-6'>
+          <section className='w-full h-full px-6 gap-10 flex flex-col   sm:flex-row'>
+            <div className='w-full h-auto flex flex-col items-center gap-6'>
               <p className='text-lg text-black mt-6' >Products</p>
               <CommonButton
                 title={'products'} setIsDisplaced={setIsDisplaced} openViews={openViews} setOpenViews={setOpenViews} setSelectedView={setSelectedView} />
@@ -77,7 +77,7 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
               <CommonButton
                 title={'categories'} setIsDisplaced={setIsDisplaced} openViews={openViews} setOpenViews={setOpenViews} setSelectedView={setSelectedView} />
             </div>
-            <div className='w-full h-full flex flex-col items-center gap-6'>
+            <div className='w-full h-auto flex flex-col items-center gap-6 border-t border-border   sm:border-none'>
               <p className='text-lg text-black mt-6' >Users</p>
               <CommonButton
                 title={'users'} setIsDisplaced={setIsDisplaced} openViews={openViews} setOpenViews={setOpenViews} setSelectedView={setSelectedView} />
@@ -89,14 +89,85 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
           </section>
 
           {/* Second section - seen when displaced */}
-          <section className='w-full h-full px-6'>
-            <button onClick={handleGoBack}>Back</button>
-            {openViews.products && <ProductsAdmin />}
-            {openViews.suppliers && <SuppliersAdmin />}
-            {openViews.categories && <CategoriesAdmin />}
-            {openViews.users && <UsersAdmin />}
-            {openViews.orders && <OrdersAdmin />}
-            {openViews.payments && <PaymentsAdmin />}
+          <section className='w-full h-full px-6 overflow-x-auto'>
+
+            {openViews.products &&
+              <GenericAdminView
+                title='Products'
+                url='/products'
+                columns={{
+                  id: 'small',
+                  name: 'large',
+                  price: 'medium',
+                  categoryID: 'medium',
+                }}
+                handleGoBack={handleGoBack}
+              />}
+
+            {openViews.suppliers &&
+              <GenericAdminView
+                title='Suppliers'
+                url='/suppliers'
+                columns={{
+                  id: 'small',
+                  name: 'large',
+                }}
+                handleGoBack={handleGoBack}
+              />
+            }
+
+            {openViews.categories &&
+              <GenericAdminView
+                title='Categories'
+                url='/categories'
+                columns={{
+                  id: 'small',
+                  name: 'medium',
+                }}
+                handleGoBack={handleGoBack}
+              />
+            }
+
+            {openViews.users &&
+              <GenericAdminView
+                title='Users'
+                url='/users'
+                columns={{
+                  id: 'small',
+                  email: 'veryLarge',
+                  role: 'medium',
+                }}
+                admin
+                handleGoBack={handleGoBack}
+              />
+            }
+
+            {openViews.orders &&
+              <GenericAdminView
+                title='Orders'
+                url='/orders'
+                columns={{
+                  id: 'small',
+                  total: 'medium',
+                  userID: 'small',
+                }}
+                handleGoBack={handleGoBack}
+              />
+            }
+
+            {openViews.payments &&
+              <GenericAdminView
+                title='Payments'
+                url='/payments'
+                columns={{
+                  id: 'small',
+                  amount: 'medium',
+                  orderID: 'small',
+                }}
+                handleGoBack={handleGoBack}
+              />
+            }
+
           </section>
 
         </div>
