@@ -54,7 +54,7 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
       <div className='w-full h-full absolute bg-black bg-opacity-50'  onClick={() => setIsAdminUtilsOpen(false)} />
 
       {/* The bigger rectangle you see */}
-      <div className='w-full h-full py-6   sm:w-3/4 sm:h-3/4 sm:rounded-2xl bg-slate-100 border border-border z-10 overflow-hidden relative'>
+      <div className='w-full h-full py-6   sm:w-3/4 sm:h-3/4 sm:rounded-2xl bg-white border border-border z-10 overflow-hidden relative'>
 
         <div className='w-5 absolute top-2 right-4 hover:cursor-pointer hover:scale-110 duration-200 z-20'>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className='w-full h-full' onClick={() => setIsAdminUtilsOpen(false)}>
@@ -69,7 +69,7 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
           {/* First sention - seen when not displaced */}
           <section className='w-full h-full px-6 gap-10 flex flex-col   sm:flex-row'>
             <div className='w-full h-auto flex flex-col items-center gap-6'>
-              <p className='text-lg text-black mt-6' >Products</p>
+              <p className='text-xl text-black mt-6'>Products</p>
               <CommonButton
                 title={'products'} setIsDisplaced={setIsDisplaced} openViews={openViews} setOpenViews={setOpenViews} setSelectedView={setSelectedView} />
               <CommonButton
@@ -78,7 +78,7 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
                 title={'categories'} setIsDisplaced={setIsDisplaced} openViews={openViews} setOpenViews={setOpenViews} setSelectedView={setSelectedView} />
             </div>
             <div className='w-full h-auto flex flex-col items-center gap-6 border-t border-border   sm:border-none'>
-              <p className='text-lg text-black mt-6' >Users</p>
+              <p className='text-xl text-black mt-6'>Users</p>
               <CommonButton
                 title={'users'} setIsDisplaced={setIsDisplaced} openViews={openViews} setOpenViews={setOpenViews} setSelectedView={setSelectedView} />
               <CommonButton

@@ -58,6 +58,8 @@ export default function Home() {
               'https://m.media-amazon.com/images/I/71AVijzvhNL._UX569_.jpg',
               'https://indyschild.com/wp-content/uploads/2016/12/AdobeStock_96977357.jpeg',
               'https://m.media-amazon.com/images/I/41vbmwe7e4L._SY450_.jpg',
+              'https://www.ikea.com/us/en/images/products/arkelstorp-desk-black__0735967_pe740301_s5.jpg?f=s',
+              'https://cdn-learn.adafruit.com/assets/assets/000/001/161/medium800/led_strips_digitalledstrip.jpg?1396769336',
             ]}
           />
 
@@ -70,6 +72,8 @@ export default function Home() {
               'https://i0.wp.com/recargasrafaela.com.ar/wp-content/uploads/2022/01/fox_relok_m6pro.jpg',
               'https://m.media-amazon.com/images/I/418QpEn9JKL._SX425_.jpg',
               'https://www.collinsdictionary.com/images/full/sock_99256316_1000.jpg',
+              'https://images.fravega.com/f300/c453eec4f43bd55572ef32816f0dc7de.jpg',
+              'https://secure.img1-fg.wfcdn.com/im/64150170/resize-h310-w310%5Ecompr-r85/1591/159162856/floral-single-shower-curtain-hooks.jpg',
             ]}
           />
 

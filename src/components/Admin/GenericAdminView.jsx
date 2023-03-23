@@ -1,6 +1,6 @@
 import React from 'react';
-import { capitalize } from 'lodash';
 import Cookies from 'js-cookie';
+// import { capitalize } from 'lodash';
 
 import { api } from 'src/utils/axiosConnection';
 
@@ -15,9 +15,9 @@ const widths = {
 
 function AdminItem({ item, columnsKeys, columnsWidths }) {
   return (
-    <section className='w-full h-14 py-2 px-2 flex flex-row items-center rounded-lg bg-slate-50 border-b border-border   hover:cursor-pointer'>
+    <section className='w-full h-14 py-2 px-2 flex flex-row items-center rounded-lg bg-slate-100 border-b border-border   hover:cursor-pointer'>
       {columnsKeys.map((key, index) => (
-        <p key={index} className={`${widths[columnsWidths[index]]} pl-4 border-r border-border`}>{item[key]}</p>
+        <p key={index} className={`${widths[columnsWidths[index]]} pl-4 border-r border-gray-300`}>{item[key]}</p>
       ))}
     </section>
   )
@@ -63,9 +63,9 @@ export function GenericAdminView({ title, url, columns, admin, handleGoBack }) {
       </div>
 
       {/* Table header */}
-      <div className='w-full h-12 my-4 py-2 pl-2 pr-6 flex flex-row items-center rounded-lg bg-slate-200 border-b border-border'>
+      <div className='w-full h-12 mt-4 mb-3 py-2 pl-2 pr-6 flex flex-row items-center rounded-lg shadow-md shadow-slate-300 bg-slate-200 border-b border-border'>
         {columnsKeys.map((key, index) => (
-          <p key={index} className={`${widths[columnsWidths[index]]} pl-4 border-r border-border`}>{key}</p>
+          <p key={index} className={`${widths[columnsWidths[index]]} pl-4 border-r border-gray-400`}>{key}</p>
         ))}
       </div>
 
