@@ -1,5 +1,7 @@
 import React from 'react';
 import { capitalize } from 'lodash';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import { GenericAdminView } from './GenericAdminView';
 
@@ -56,10 +58,12 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
       {/* The bigger rectangle you see */}
       <div className='w-full h-full py-6   sm:w-3/4 sm:h-3/4 sm:rounded-2xl bg-white border border-border z-10 overflow-hidden relative'>
 
+        {/* Xmark that closes the modal */}
         <div className='w-5 absolute top-2 right-4 hover:cursor-pointer hover:scale-110 duration-200 z-20'>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className='w-full h-full' onClick={() => setIsAdminUtilsOpen(false)}>
+          {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" className='w-full h-full' onClick={() => setIsAdminUtilsOpen(false)}>
             <path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/>
-          </svg>
+          </svg> */}
+          <FontAwesomeIcon icon={faXmark} className='w-full h-full' onClick={() => setIsAdminUtilsOpen(false)}/>
         </div>
 
 
@@ -148,8 +152,8 @@ export function AdminUtils({ setIsAdminUtilsOpen }) {
                 url='/orders'
                 columns={{
                   id: 'small',
-                  total: 'medium',
                   userID: 'small',
+                  total: 'medium',
                 }}
                 handleGoBack={handleGoBack}
               />

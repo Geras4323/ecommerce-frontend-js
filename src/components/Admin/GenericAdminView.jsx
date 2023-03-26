@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 // import { capitalize } from 'lodash';
 
 import { api } from 'src/utils/axiosConnection';
-
+import { AdminItem } from './AdminItem';
 
 const widths = {
   small: 'w-20',
@@ -13,21 +13,13 @@ const widths = {
 }
 
 
-function AdminItem({ item, columnsKeys, columnsWidths }) {
-  return (
-    <section className='w-full h-14 py-2 px-2 flex flex-row items-center rounded-lg bg-slate-100 border-b border-border   hover:cursor-pointer'>
-      {columnsKeys.map((key, index) => (
-        <p key={index} className={`${widths[columnsWidths[index]]} pl-4 border-r border-gray-300`}>{item[key]}</p>
-      ))}
-    </section>
-  )
-}
-
 
 export function GenericAdminView({ title, url, columns, admin, handleGoBack }) {
   const [itemList, setItemList] = React.useState([]);
   const [columnsKeys, setColumnsKeys] = React.useState([]);
   const [columnsWidths, setColumnsWidths] = React.useState([]);
+
+  const [changesMade, setChangesMade] = React.useState(0);
 
   React.useEffect(() => {
     (async () => {
@@ -43,13 +35,13 @@ export function GenericAdminView({ title, url, columns, admin, handleGoBack }) {
         }
       }
       const { data } = await api.get(url, config);
-      setItemList(data);
+      setItemList(data.sort((a, b) => a.id - b.id)); //order items by ID
     })()
 
     setColumnsKeys(Object.keys(columns));
     setColumnsWidths(Object.values(columns));
 
-  }, [])
+  }, [changesMade])
 
   return (
     <div className='h-full'>
@@ -72,7 +64,7 @@ export function GenericAdminView({ title, url, columns, admin, handleGoBack }) {
       {/* Table content */}
       <div className='w-full h-[77%] flex flex-col gap-2  overflow-y-auto'>
         {itemList.map((item, index) => (
-          <AdminItem key={index} item={item} columnsKeys={columnsKeys} columnsWidths={columnsWidths} />
+          <AdminItem key={index} item={item} url={url} title={title} columnsKeys={columnsKeys} columnsWidths={columnsWidths} setChangesMade={setChangesMade} />
         ))}
       </div>
     </div>

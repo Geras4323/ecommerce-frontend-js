@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useGetProducts(API) {
+export function useGetProducts(API) {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -8,7 +8,7 @@ function useGetProducts(API) {
     async function fetchAPI() {
       const response = await fetch(API)
       const data = await response.json()
-      setProducts(data)
+      setProducts(data.sort((a, b) => a.id - b.id))
       setIsLoading(false)
     }
 
@@ -17,5 +17,3 @@ function useGetProducts(API) {
 
   return (products)
 }
-
-export { useGetProducts };

@@ -5,11 +5,10 @@ import { useGetProducts } from '../hooks/useGetProducts';
 
 
 const API = process.env.BASE_URL ? `${process.env.BASE_URL}/products` : 'http://localhost:5000/api/v1/products';
-// const API = 'http://localhost:5000/api/v1/products';
 
 
 function ProductsList({ email, category }) {
-  const products = useGetProducts(API)
+  const products = useGetProducts(API);
 
   const [filteredProducts, setFilteredProducts] = React.useState([]);
 

@@ -20,7 +20,6 @@ export default function Home() {
       const login_token = Cookies.get('login-token');
       if (login_token) {
         const { email, role } = await verifyToken(login_token);
-        console.log(role);
         setEmail(email);
         setRole(role);
         setLogged(true);
